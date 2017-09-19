@@ -124,7 +124,7 @@ void setup(void){
 
   // List all devices
   server.on("/devices", [](){
-    server.send(200, "application/json", "success");
+    server.send(200, "application/json", "{'devices':[1,2,3,4,5]}");
     delay(1000);
   });
 
