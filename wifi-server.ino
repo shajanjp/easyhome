@@ -10,11 +10,11 @@ const char* password = "M@keafire"; // your connection password
 
 ESP8266WebServer server(80);
 
-int light_1 = 5;
-int light_2 = 4;
-int light_3 = 0;
-int light_4 = 2;
-int light_5 = 14;
+int device_1 = 5;
+int device_2 = 4;
+int device_3 = 0;
+int device_4 = 2;
+int device_5 = 14;
 
 //Check if header is present and correct
 bool is_authentified(){
@@ -90,11 +90,11 @@ void handleNotFound(){
 void setup(void){
 
    // preparing GPIOs
-  pinMode(light_1, OUTPUT);
-  pinMode(light_2, OUTPUT);
-  pinMode(light_3, OUTPUT);
-  pinMode(light_4, OUTPUT);
-  pinMode(light_5, OUTPUT);
+  pinMode(device_1, OUTPUT);
+  pinMode(device_2, OUTPUT);
+  pinMode(device_3, OUTPUT);
+  pinMode(device_4, OUTPUT);
+  pinMode(device_5, OUTPUT);
   
   delay(1000);
 
@@ -124,67 +124,67 @@ void setup(void){
 
   // List all devices
   server.on("/devices", [](){
-    server.send(200, "application/json", "{'devices':[1,2,3,4,5]}");
+    server.send(200, "application/json", "{'devices':[device_1,device_2,device_3,device_4,device_5]}");
     delay(1000);
   });
 
   // Control Individual devices
   server.on("/devices/1/on", [](){
-    digitalWrite(light_1, HIGH);
+    digitalWrite(device_1, HIGH);
     server.send(200, "application/json", "{'state':true, 'device':1}");
     delay(1000);
   });
 
   server.on("/devices/1/off", [](){
-    digitalWrite(light_1, LOW);
+    digitalWrite(device_1, LOW);
     server.send(200, "application/json", "off");
     delay(1000); 
   });
 
   server.on("/devices/2/on", [](){
-    digitalWrite(light_2, HIGH);
+    digitalWrite(device_2, HIGH);
     server.send(200, "application/json", "on");
     delay(1000);
   });
 
   server.on("/devices/2/off", [](){
-    digitalWrite(light_2, LOW);
+    digitalWrite(device_2, LOW);
     server.send(200, "application/json", "off");
     delay(1000); 
   });
 
   server.on("/devices/3/on", [](){
-    digitalWrite(light_3, HIGH);
+    digitalWrite(device_3, HIGH);
     server.send(200, "application/json", "on");
     delay(1000);
   });
 
   server.on("/devices/3/off", [](){
-    digitalWrite(light_3, LOW);
+    digitalWrite(device_3, LOW);
     server.send(200, "application/json", "off");
     delay(1000); 
   });
 
   server.on("/devices/4/on", [](){
-    digitalWrite(light_4, HIGH);
+    digitalWrite(device_4, HIGH);
     server.send(200, "application/json", "on");
     delay(1000);
   });
 
   server.on("/devices/4/off", [](){
-    digitalWrite(light_4, LOW);
+    digitalWrite(device_4, LOW);
     server.send(200, "application/json", "off");
     delay(1000); 
   });
 
   server.on("/devices/5/on", [](){
-    digitalWrite(light_5, HIGH);
+    digitalWrite(device_5, HIGH);
     server.send(200, "application/json", "on");
     delay(1000);
   });
 
   server.on("/devices/5/off", [](){
-    digitalWrite(light_5, LOW);
+    digitalWrite(device_5, LOW);
     server.send(200, "application/json", "off");
     delay(1000); 
   });
