@@ -83,8 +83,7 @@ void handleRoot(){
 
 //no need authentification
 void handleNotFound(){
-  String message = "File Not Found\n\n";
-  server.send(404, "text/plain", message);
+  server.send(404, "application/json", "{\"message\":\"Invalid request\"}");
 }
 
 void setup(void){
