@@ -131,7 +131,7 @@ void setup(void){
   // Control Individual devices
   server.on("/devices/1/on", [](){
     digitalWrite(light_1, HIGH);
-    server.send(200, "application/json", "on");
+    server.send(200, "application/json", "{'state':true, 'device':1}");
     delay(1000);
   });
 
