@@ -111,9 +111,6 @@ void setup(void){
 
   server.on("/", handleRoot);
   server.on("/login", handleLogin);
-  server.on("/inline", [](){
-    server.send(200, "text/plain", "this works without authentification");
-  });
 
   server.onNotFound(handleNotFound);
   //here the list of headers to be recorded
