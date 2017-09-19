@@ -121,68 +121,68 @@ void setup(void){
 
   // List all devices
   server.on("/devices", [](){
-    server.send(200, "application/json", "{'devices':[device_1,device_2,device_3,device_4,device_5]}");
+    server.send(200, "application/json", "{\"devices\": \"success\"}");
     delay(1000);
   });
 
   // Control Individual devices
   server.on("/devices/1/on", [](){
     digitalWrite(device_1, HIGH);
-    server.send(200, "application/json", "{'state':true, 'device':1}");
+    server.send(200, "application/json", "{\"state\":true, \"device\": 1}");
     delay(1000);
   });
 
   server.on("/devices/1/off", [](){
     digitalWrite(device_1, LOW);
-    server.send(200, "application/json", "{'state':false, 'device':1}");
+    server.send(200, "application/json", "{\"state\":false, \"device\": 1}");
     delay(1000); 
   });
 
   server.on("/devices/2/on", [](){
     digitalWrite(device_2, HIGH);
-    server.send(200, "application/json", "on");
+    server.send(200, "application/json", "{\"state\":true, \"device\": 2}");
     delay(1000);
   });
 
   server.on("/devices/2/off", [](){
     digitalWrite(device_2, LOW);
-    server.send(200, "application/json", "off");
+    server.send(200, "application/json", "{\"state\":false, \"device\": 2}");
     delay(1000); 
   });
 
   server.on("/devices/3/on", [](){
     digitalWrite(device_3, HIGH);
-    server.send(200, "application/json", "on");
+    server.send(200, "application/json", "{\"state\":true, \"device\": 3}");
     delay(1000);
   });
 
   server.on("/devices/3/off", [](){
     digitalWrite(device_3, LOW);
-    server.send(200, "application/json", "off");
+    server.send(200, "application/json", "{\"state\":false, \"device\": 3}");
     delay(1000); 
   });
 
   server.on("/devices/4/on", [](){
     digitalWrite(device_4, HIGH);
-    server.send(200, "application/json", "on");
+    server.send(200, "application/json", "{\"state\":true, \"device\": 4}");
     delay(1000);
   });
 
   server.on("/devices/4/off", [](){
     digitalWrite(device_4, LOW);
-    server.send(200, "application/json", "off");
+    server.send(200, "application/json", "{\"state\":false, \"device\": 4}");
     delay(1000); 
   });
 
   server.on("/devices/5/on", [](){
     digitalWrite(device_5, HIGH);
-    server.send(200, "application/json", "on");
+    server.send(200, "application/json", "{\"state\":true, \"device\": 5}");
     delay(1000);
   });
 
   server.on("/devices/5/off", [](){
     digitalWrite(device_5, LOW);
-    server.send(200, "application/json", "off");
+    server.send(200, "application/json", "{\"state\":false, \"device\": 5}");
     delay(1000); 
   });
 
