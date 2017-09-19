@@ -126,61 +126,61 @@ void setup(void){
     delay(1000);
   });
 
-  server.on("/lights/1/on", [](){
+  server.on("/devices/1/on", [](){
     digitalWrite(light_1, HIGH);
     server.send(200, "text/html", "on");
     delay(1000);
   });
 
-  server.on("/lights/1/off", [](){
+  server.on("/devices/1/off", [](){
     digitalWrite(light_1, LOW);
     server.send(200, "text/html", "off");
     delay(1000); 
   });
 
-  server.on("/lights/2/on", [](){
+  server.on("/devices/2/on", [](){
     digitalWrite(light_2, HIGH);
     server.send(200, "text/html", "on");
     delay(1000);
   });
 
-  server.on("/lights/2/off", [](){
+  server.on("/devices/2/off", [](){
     digitalWrite(light_2, LOW);
     server.send(200, "text/html", "off");
     delay(1000); 
   });
 
-  server.on("/lights/3/on", [](){
+  server.on("/devices/3/on", [](){
     digitalWrite(light_3, HIGH);
     server.send(200, "text/html", "on");
     delay(1000);
   });
 
-  server.on("/lights/3/off", [](){
+  server.on("/devices/3/off", [](){
     digitalWrite(light_3, LOW);
     server.send(200, "text/html", "off");
     delay(1000); 
   });
 
-  server.on("/lights/4/on", [](){
+  server.on("/devices/4/on", [](){
     digitalWrite(light_4, HIGH);
     server.send(200, "text/html", "on");
     delay(1000);
   });
 
-  server.on("/lights/4/off", [](){
+  server.on("/devices/4/off", [](){
     digitalWrite(light_4, LOW);
     server.send(200, "text/html", "off");
     delay(1000); 
   });
 
-  server.on("/lights/5/on", [](){
+  server.on("/devices/5/on", [](){
     digitalWrite(light_5, HIGH);
     server.send(200, "text/html", "on");
     delay(1000);
   });
 
-  server.on("/lights/5/off", [](){
+  server.on("/devices/5/off", [](){
     digitalWrite(light_5, LOW);
     server.send(200, "text/html", "off");
     delay(1000); 
