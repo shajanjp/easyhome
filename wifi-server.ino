@@ -137,7 +137,7 @@ void setup(void){
 
   server.on("/devices/1/off", [](){
     digitalWrite(device_1, LOW);
-    server.send(200, "application/json", "off");
+    server.send(200, "application/json", "{'state':false, 'device':1}");
     delay(1000); 
   });
 
