@@ -16,69 +16,9 @@ int device_3 = 13;
 int device_4 = 15;
 int device_5 = 3;
 
-//Check if header is present and correct
-bool is_authentified(){
-  if (server.hasHeader("Cookie")){
-    String cookie = server.header("Cookie");
-    if (cookie.indexOf("ESPSESSIONID=1") != -1) {
-      return true;
-    }
-  }
-  return false;
-}
-
-//login page, also called for disconnect
-void handleLogin(){
-  String msg;
-  if (server.hasHeader("Cookie")){
-    String cookie = server.header("Cookie");
-  }
-  if (server.hasArg("DISCONNECT")){
-    server.sendHeader("Location","/login");
-    server.sendHeader("Cache-Control","no-cache");
-    server.sendHeader("Set-Cookie","ESPSESSIONID=0");
-    server.send(301);
-    return;
-  }
-  if (server.hasArg("USERNAME") && server.hasArg("PASSWORD")){
-    if (server.arg("USERNAME") == "admin" &&  server.arg("PASSWORD") == "root" ) // enter ur username and password you want
-    {
-      server.sendHeader("Location","/");
-      server.sendHeader("Cache-Control","no-cache");
-      server.sendHeader("Set-Cookie","ESPSESSIONID=1");
-      server.send(301);
-      return;
-    }
-
-    msg = "Wrong username/password! try again.";
-  }
-  String content = "<html><body style='background-color:MediumAquaMarine'><form action='/login' method='POST'><p  align ='center' style='font-size:300%;'><u><b><i>  Log In  </i></b></u></p><br>";
-  content += " <p align ='center' style='font-size:160%'><b> UserName:<input type='text' name='USERNAME' placeholder='user name' required></b></p><br>";
-  content += "<p align ='center' style='font-size:160%'><b>Password:<input type='password' name='PASSWORD' placeholder='password' required></b></p><br>";
-  content += "<p align ='center' style='font-size:160%'><input type='submit' name='SUBMIT' value='Submit'></form>" + msg + "</p><br> </body></html>";
-  server.send(200, "text/html", content);
-}
-
 //root page can be accessed only if authentification is ok
 void handleRoot(){
-  String header;
-  if (!is_authentified()){
-    server.sendHeader("Location","/login");
-    server.sendHeader("Cache-Control","no-cache");
-    server.send(301);
-    return;
-  }
-  String content =  "<body><h1 align ='center'><b><u><i><strong>HOME AUTOMATION</strong></i></u></b></h1><br><p align ='center'>Switch #1 <a href=\"switch1On\"><button>ON</button></a>&nbsp;<a href=\"switch1Off\"><button>OFF</button></a></p>";
-  content += "<br><p  align ='center'>Switch #2 <a href=\"switch2On\"><button>ON</button></a>&nbsp;<a href=\"switch2Off\"><button>OFF</button></a></p>";
-  content += "<br><p  align ='center'>Switch #3 <a href=\"switch3On\"><button>ON</button></a>&nbsp;<a href=\"switch3Off\"><button>OFF</button></a></p>";
-  content += "<br>";
-  content += "<br><br><br><br></body>"; 
-  
-  if (server.hasHeader("User-Agent")){
-    content += "the user agent used is : " + server.header("User-Agent") + "<br><br>";    
-  }
-  content += "You can access this page until you <a href=\"/login?DISCONNECT=YES\">disconnect</a></body></html>";
-  server.send(200, "text/html", content);
+  server.send(200, "text/html", "{\"message\":\"Welcome to AutoHome\"}");
 }
 
 //no need authentification
@@ -109,7 +49,6 @@ void setup(void){
   }
 
   server.on("/", handleRoot);
-  server.on("/login", handleLogin);
   server.onNotFound(handleNotFound);
 
   // List all devices
