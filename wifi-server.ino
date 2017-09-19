@@ -103,7 +103,7 @@ void setup(void){
 
   // Wait for connection
   while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
+    delay(1000);
   }
   if (mdns.begin("esp8266", WiFi.localIP())) {
     Serial.println("MDNS responder started");
