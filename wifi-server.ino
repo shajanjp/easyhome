@@ -122,68 +122,70 @@ void setup(void){
   //ask server to track these headers
   server.collectHeaders(headerkeys, headerkeyssize );
 
-  server.on("/test", [](){
-    server.send(200, "text/html", "success");
+  // List all devices
+  server.on("/devices", [](){
+    server.send(200, "application/json", "success");
     delay(1000);
   });
 
+  // Control Individual devices
   server.on("/devices/1/on", [](){
     digitalWrite(light_1, HIGH);
-    server.send(200, "text/html", "on");
+    server.send(200, "application/json", "on");
     delay(1000);
   });
 
   server.on("/devices/1/off", [](){
     digitalWrite(light_1, LOW);
-    server.send(200, "text/html", "off");
+    server.send(200, "application/json", "off");
     delay(1000); 
   });
 
   server.on("/devices/2/on", [](){
     digitalWrite(light_2, HIGH);
-    server.send(200, "text/html", "on");
+    server.send(200, "application/json", "on");
     delay(1000);
   });
 
   server.on("/devices/2/off", [](){
     digitalWrite(light_2, LOW);
-    server.send(200, "text/html", "off");
+    server.send(200, "application/json", "off");
     delay(1000); 
   });
 
   server.on("/devices/3/on", [](){
     digitalWrite(light_3, HIGH);
-    server.send(200, "text/html", "on");
+    server.send(200, "application/json", "on");
     delay(1000);
   });
 
   server.on("/devices/3/off", [](){
     digitalWrite(light_3, LOW);
-    server.send(200, "text/html", "off");
+    server.send(200, "application/json", "off");
     delay(1000); 
   });
 
   server.on("/devices/4/on", [](){
     digitalWrite(light_4, HIGH);
-    server.send(200, "text/html", "on");
+    server.send(200, "application/json", "on");
     delay(1000);
   });
 
   server.on("/devices/4/off", [](){
     digitalWrite(light_4, LOW);
-    server.send(200, "text/html", "off");
+    server.send(200, "application/json", "off");
     delay(1000); 
   });
 
   server.on("/devices/5/on", [](){
     digitalWrite(light_5, HIGH);
-    server.send(200, "text/html", "on");
+    server.send(200, "application/json", "on");
     delay(1000);
   });
 
   server.on("/devices/5/off", [](){
     digitalWrite(light_5, LOW);
-    server.send(200, "text/html", "off");
+    server.send(200, "application/json", "off");
     delay(1000); 
   });
 
