@@ -10,11 +10,11 @@ const char* password = "M@keafire"; // your connection password
 
 ESP8266WebServer server(80);
 
-int device_1 = 5;
-int device_2 = 4;
-int device_3 = 0;
-int device_4 = 2;
-int device_5 = 14;
+int device_1 = 14;
+int device_2 = 12;
+int device_3 = 13;
+int device_4 = 15;
+int device_5 = 3;
 
 //Check if header is present and correct
 bool is_authentified(){
