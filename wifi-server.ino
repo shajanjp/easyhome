@@ -91,6 +91,10 @@ void setup(void){
 
    // preparing GPIOs
   pinMode(light_1, OUTPUT);
+  pinMode(light_2, OUTPUT);
+  pinMode(light_3, OUTPUT);
+  pinMode(light_4, OUTPUT);
+  pinMode(light_5, OUTPUT);
   
   delay(1000);
 
