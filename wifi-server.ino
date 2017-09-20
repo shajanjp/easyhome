@@ -41,10 +41,7 @@ void setup(void){
   while (WiFi.status() != WL_CONNECTED) {
     delay(1000);
   }
-  if (mdns.begin("esp8266", WiFi.localIP())) {
-    Serial.println("MDNS responder started");
-  }
-
+  
   server.on("/", handleRoot);
   server.onNotFound(handleNotFound);
 
