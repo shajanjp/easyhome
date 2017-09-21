@@ -48,10 +48,10 @@ void turnEverything(int state){
 }
 
 void handleDevice(int device, int state){
-  String response = "{\"state\":";
-  response += state;
-  response += ", \"device\":";
+  String response = "{\"device\":";
   response += (device + 1); 
+  response += ", \"state\":";
+  response += state;
   response += "}";
   turnDevice(device, state);
   server.send(200, "application/json", response);
@@ -61,10 +61,10 @@ void handleDevice(int device, int state){
 void handleDeviceStatus(){
   String response = "[";
   for (int i = 0; i < 5; ++i){
-    response += "{\"state\":";
-    response += device_status[i];
-    response += ", \"device\":";
+    response += "{\"device\":";
     response += (i + 1);
+    response += ", \"status\":";
+    response += device_status[i];
     if(i !=4 )
       response += "},";
     else
