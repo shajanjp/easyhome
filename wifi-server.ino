@@ -124,6 +124,18 @@ void setup(void){
     delay(1000); 
   });
 
+  server.on("/devices/all/on", [](){
+    turnEverything(1);
+    server.send(200, "application/json", "{\"state\":false, \"device\": [1,2,3,4,5]}");
+    delay(1000); 
+  });
+
+  server.on("/devices/all/off", [](){
+    turnEverything(0);
+    server.send(200, "application/json", "{\"state\":false, \"device\": [1,2,3,4,5]}");
+    delay(1000); 
+  });
+
   server.begin();
 }
 
