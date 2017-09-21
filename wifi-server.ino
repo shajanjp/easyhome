@@ -47,6 +47,17 @@ void turnEverything(int state){
   }
 }
 
+void handleDevice(int device, int state){
+    String response = "{\"state\":";
+    response += state;
+    response += ", \"device\":";
+    response += (device + 1); 
+    response += "}";
+    turnDevice(device, state);
+    server.send(200, "application/json", response);
+    delay(1000);
+}
+
 void setup(void){
 // preparing GPIOs
   for (int i = 0; i < 5; ++i)
