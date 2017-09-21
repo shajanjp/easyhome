@@ -7,11 +7,7 @@ const char* password = "M@keafire"; // your connection password
 
 ESP8266WebServer server(80);
 
-int device_1 = 14;
-int device_2 = 12;
-int device_3 = 13;
-int device_4 = 15;
-int device_5 = 3;
+int devices[] = {14,12,13,15,3};
 
 //root page can be accessed only if authentification is ok
 void handleRoot(){
