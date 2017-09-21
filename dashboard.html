@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Auto Home</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.1/semantic.min.css">
+</head>
+<body>
+	<br>
+	<div class="ui container">
+		<div class="ui segments">
+			<div class="ui segment">
+				<h3 class="ui header">AutoHome Devices</h3>
+			</div>
+			<div class="ui segment">
+				<div class="ui five cards">
+
+					<!-- Device 1 -->
+					<div class="card device" data-device="1" data-state="off" id="device-1">
+						<div class="image">
+							<img src="">
+						</div>
+						<div class="content">
+							<div class="header">Device 1</div>
+							<div class="meta">
+								<a>GPIO 14</a>
+							</div>
+						</div>
+						<div class="extra content">
+							<span class="right floated">
+								<i class="red circle icon"></i>
+							</span>
+						</div>
+					</div>
+
+					<!-- Device 2 -->
+					<div class="card device" data-device="2" data-state="off" id="device-2">
+						<div class="image">
+							<img src="">
+						</div>
+						<div class="content">
+							<div class="header">Device 1</div>
+							<div class="meta">
+								<a>GPIO 12</a>
+							</div>
+						</div>
+						<div class="extra content">
+							<span class="right floated">
+								<i class="red circle icon"></i>
+							</span>
+						</div>
+					</div>
+
+					<!-- Device 3 -->
+					<div class="card device" data-device="3" data-state="off" id="device-3">
+						<div class="image">
+							<img src="">
+						</div>
+						<div class="content">
+							<div class="header">Device 1</div>
+							<div class="meta">
+								<a>GPIO 13</a>
+							</div>
+						</div>
+						<div class="extra content">
+							<span class="right floated">
+								<i class="red circle icon"></i>
+							</span>
+						</div>
+					</div>
+
+					<!-- Device 4 -->
+					<div class="card device" data-device="4" data-state="off" id="device-4">
+						<div class="image">
+							<img src="">
+						</div>
+						<div class="content">
+							<div class="header">Device 1</div>
+							<div class="meta">
+								<a>GPIO 15</a>
+							</div>
+						</div>
+						<div class="extra content">
+							<span class="right floated">
+								<i class="red circle icon"></i>
+							</span>
+						</div>
+					</div>
+
+					<!-- Device 5 -->
+					<div class="card device" data-device="5" data-state="off" id="device-5">
+						<div class="image">
+							<img src="">
+						</div>
+						<div class="content">
+							<div class="header">Device 1</div>
+							<div class="meta">
+								<a>GPIO 3</a>
+							</div>
+						</div>
+						<div class="extra content">
+							<span class="right floated">
+								<i class="red circle icon"></i>
+							</span>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/semantic-ui/2.2.1/semantic.min.js"></script>
+	<script>
+		var makeSwitch = function(sno, state){
+			var device = $('#device-' + sno);
+			if(state == 1){
+				device.find('.extra i').removeClass('red').addClass('green');
+				device.data('state', "on");
+			}
+			else{
+				device.find('.extra i').removeClass('green').addClass('red');
+				device.data('state', "off");
+			}
+		}
+
+		var nextState = function(current_state){
+			if (current_state == "on") 
+				return "off";
+			else
+				return "on";
+		}
+
+		$('.device').on('click', function(){
+			var current_device = $(this);
+			$.get( "http://192.168.1.100/devices/" + current_device.data('device') + "/" + nextState(current_device.data('state')), function( data ) {
+				makeSwitch(data.device, data.state);
+			});
+		});
+	</script>
+</body>
+</html>
