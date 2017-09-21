@@ -134,11 +134,11 @@ void setup(void){
   });
 
   server.on("/devices/5/on", [](){
-    handleDevice(4, 0);
+    handleDevice(4, 1);
   });
 
   server.on("/devices/5/off", [](){
-    handleDevice(4, 1);
+    handleDevice(4, 0);
   });
 
   server.on("/devices/all/on", [](){
