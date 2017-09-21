@@ -7,6 +7,8 @@ const char* password = "M@keafire"; // your connection password
 
 ESP8266WebServer server(80);
 
+int device_status[4]; 
+
 int devices[] = {14,12,13,15,3};
 
 //root page can be accessed only if authentification is ok
@@ -20,20 +22,28 @@ void handleNotFound(){
 }
 
 void turnDevice(int device, int state){
-  if(state == 1)
+  if(state == 1){
     digitalWrite(devices[device], HIGH);
-  else
+    device_status[device] = 1;
+  }
+  else{
     digitalWrite(devices[device], LOW);
+    device_status[device] = 0;
+  }
 }
 
 void turnEverything(int state){
   if(state == 1){
-    for (int i = 0; i < 5; ++i)
+    for (int i = 0; i < 5; ++i){
       digitalWrite(devices[i], HIGH);
+      device_status[i] = 1;
+    }
   }
   else{
-    for (int i = 0; i < 5; ++i)
+    for (int i = 0; i < 5; ++i){
       digitalWrite(devices[i], LOW);
+      device_status[i] = 0;
+    }
   }
 }
 
