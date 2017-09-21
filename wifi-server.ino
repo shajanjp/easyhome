@@ -80,7 +80,19 @@ void setup(void){
 
   // List all devices
   server.on("/devices", [](){
-    server.send(200, "application/json", "{\"devices\": \"success\"}");
+    String response = "[";
+    for (int i = 0; i < 5; ++i){
+      response += "{\"state\":";
+      response += device_status[i];
+      response += ", \"device\":";
+      response += (i + 1);
+      if(i !=4 )
+        response += "},";
+      else
+        response += "}";
+    }
+    response += "]";
+    server.send(200, "application/json", response);
     delay(1000);
   });
 
