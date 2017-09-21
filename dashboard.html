@@ -144,7 +144,7 @@
 
 		$('.device').on('click', function(){
 			var current_device = $(this);
-			$.get( "http://192.168.1.100/devices/" + current_device.data('device') + "/" + nextState(current_device.data('state')), function( data ) {
+			$.get("http://192.168.1.100/devices/" + current_device.data('device') + "/" + nextState(current_device.data('state')), function( data ) {
 				makeSwitch(data.device, data.state);
 			});
 		});
