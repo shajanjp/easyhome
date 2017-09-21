@@ -58,6 +58,23 @@ void handleDevice(int device, int state){
   delay(1000);
 }
 
+void handleDeviceStatus(){
+  String response = "[";
+  for (int i = 0; i < 5; ++i){
+    response += "{\"state\":";
+    response += device_status[i];
+    response += ", \"device\":";
+    response += (i + 1);
+    if(i !=4 )
+      response += "},";
+    else
+      response += "}";
+  }
+  response += "]";
+  server.send(200, "application/json", response);
+  delay(1000);
+}
+
 void setup(void){
 // preparing GPIOs
   for (int i = 0; i < 5; ++i)
