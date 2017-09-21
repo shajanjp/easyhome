@@ -97,20 +97,7 @@ void setup(void){
 
   // List all devices
   server.on("/devices", [](){
-    String response = "[";
-    for (int i = 0; i < 5; ++i){
-      response += "{\"state\":";
-      response += device_status[i];
-      response += ", \"device\":";
-      response += (i + 1);
-      if(i !=4 )
-        response += "},";
-      else
-        response += "}";
-    }
-    response += "]";
-    server.send(200, "application/json", response);
-    delay(1000);
+    handleDeviceStatus();
   });
 
   // Control Individual devices
@@ -156,14 +143,12 @@ void setup(void){
 
   server.on("/devices/all/on", [](){
     turnEverything(1);
-    server.send(200, "application/json", "{\"state\":false, \"device\": [1,2,3,4,5]}");
-    delay(1000); 
+    handleDeviceStatus(); 
   });
 
   server.on("/devices/all/off", [](){
     turnEverything(0);
-    server.send(200, "application/json", "{\"state\":false, \"device\": [1,2,3,4,5]}");
-    delay(1000); 
+    handleDeviceStatus();
   });
 
   server.begin();
