@@ -19,6 +19,12 @@ void handleNotFound(){
   server.send(404, "application/json", "{\"message\":\"Invalid request\"}");
 }
 
+void turnDevice(int device, int state){
+  if(state == 1)
+    digitalWrite(devices[device], HIGH);
+  else
+    digitalWrite(devices[device], LOW);
+}
 void setup(void){
 
    // preparing GPIOs
