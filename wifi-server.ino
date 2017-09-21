@@ -65,61 +65,61 @@ void setup(void){
 
   // Control Individual devices
   server.on("/devices/1/on", [](){
-    digitalWrite(device_1, HIGH);
+    turnDevice(0, 1);
     server.send(200, "application/json", "{\"state\":true, \"device\": 1}");
     delay(1000);
   });
 
   server.on("/devices/1/off", [](){
-    digitalWrite(device_1, LOW);
+    turnDevice(0, 0);
     server.send(200, "application/json", "{\"state\":false, \"device\": 1}");
     delay(1000); 
   });
 
   server.on("/devices/2/on", [](){
-    digitalWrite(device_2, HIGH);
+    turnDevice(1, 1);
     server.send(200, "application/json", "{\"state\":true, \"device\": 2}");
     delay(1000);
   });
 
   server.on("/devices/2/off", [](){
-    digitalWrite(device_2, LOW);
+    turnDevice(1, 0);
     server.send(200, "application/json", "{\"state\":false, \"device\": 2}");
     delay(1000); 
   });
 
   server.on("/devices/3/on", [](){
-    digitalWrite(device_3, HIGH);
+    turnDevice(2, 1);
     server.send(200, "application/json", "{\"state\":true, \"device\": 3}");
     delay(1000);
   });
 
   server.on("/devices/3/off", [](){
-    digitalWrite(device_3, LOW);
+    turnDevice(2, 0);
     server.send(200, "application/json", "{\"state\":false, \"device\": 3}");
     delay(1000); 
   });
 
   server.on("/devices/4/on", [](){
-    digitalWrite(device_4, HIGH);
+    turnDevice(3, 1);
     server.send(200, "application/json", "{\"state\":true, \"device\": 4}");
     delay(1000);
   });
 
   server.on("/devices/4/off", [](){
-    digitalWrite(device_4, LOW);
+    turnDevice(3, 0);
     server.send(200, "application/json", "{\"state\":false, \"device\": 4}");
     delay(1000); 
   });
 
   server.on("/devices/5/on", [](){
-    digitalWrite(device_5, HIGH);
+    turnDevice(4, 0);
     server.send(200, "application/json", "{\"state\":true, \"device\": 5}");
     delay(1000);
   });
 
   server.on("/devices/5/off", [](){
-    digitalWrite(device_5, LOW);
+    turnDevice(4, 1);
     server.send(200, "application/json", "{\"state\":false, \"device\": 5}");
     delay(1000); 
   });
