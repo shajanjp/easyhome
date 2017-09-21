@@ -38,14 +38,12 @@ void turnEverything(int state){
 }
 
 void setup(void){
+// preparing GPIOs
+  for (int i = 0; i < 5; ++i)
+    pinMode(devices[i], OUTPUT);
 
-   // preparing GPIOs
-  pinMode(device_1, OUTPUT);
-  pinMode(device_2, OUTPUT);
-  pinMode(device_3, OUTPUT);
-  pinMode(device_4, OUTPUT);
-  pinMode(device_5, OUTPUT);
-  
+  turnEverything(0);
+
   delay(1000);
 
   Serial.begin(115200);
