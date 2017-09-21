@@ -25,6 +25,18 @@ void turnDevice(int device, int state){
   else
     digitalWrite(devices[device], LOW);
 }
+
+void turnEverything(int state){
+  if(state == 1){
+    for (int i = 0; i < 5; ++i)
+      digitalWrite(devices[i], HIGH);
+  }
+  else{
+    for (int i = 0; i < 5; ++i)
+      digitalWrite(devices[i], LOW);
+  }
+}
+
 void setup(void){
 
    // preparing GPIOs
