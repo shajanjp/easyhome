@@ -86,63 +86,43 @@ void setup(void){
 
   // Control Individual devices
   server.on("/devices/1/on", [](){
-    turnDevice(0, 1);
-    server.send(200, "application/json", "{\"state\":true, \"device\": 1}");
-    delay(1000);
+    handleDevice(0, 1);
   });
 
   server.on("/devices/1/off", [](){
-    turnDevice(0, 0);
-    server.send(200, "application/json", "{\"state\":false, \"device\": 1}");
-    delay(1000); 
+    handleDevice(0, 0);
   });
 
   server.on("/devices/2/on", [](){
-    turnDevice(1, 1);
-    server.send(200, "application/json", "{\"state\":true, \"device\": 2}");
-    delay(1000);
+    handleDevice(1, 1);
   });
 
   server.on("/devices/2/off", [](){
-    turnDevice(1, 0);
-    server.send(200, "application/json", "{\"state\":false, \"device\": 2}");
-    delay(1000); 
+    handleDevice(1, 0);
   });
 
   server.on("/devices/3/on", [](){
-    turnDevice(2, 1);
-    server.send(200, "application/json", "{\"state\":true, \"device\": 3}");
-    delay(1000);
+    handleDevice(2, 1);
   });
 
   server.on("/devices/3/off", [](){
-    turnDevice(2, 0);
-    server.send(200, "application/json", "{\"state\":false, \"device\": 3}");
-    delay(1000); 
+    handleDevice(2, 0);
   });
 
   server.on("/devices/4/on", [](){
-    turnDevice(3, 1);
-    server.send(200, "application/json", "{\"state\":true, \"device\": 4}");
-    delay(1000);
+    handleDevice(3, 1);
   });
 
   server.on("/devices/4/off", [](){
-    turnDevice(3, 0);
-    server.send(200, "application/json", "{\"state\":false, \"device\": 4}");
-    delay(1000); 
+    handleDevice(3, 0);
   });
 
   server.on("/devices/5/on", [](){
-    turnDevice(4, 0);
-    server.send(200, "application/json", "{\"state\":true, \"device\": 5}");
-    delay(1000);
+    handleDevice(4, 0);
   });
 
   server.on("/devices/5/off", [](){
-    turnDevice(4, 1);
-    server.send(200, "application/json", "{\"state\":false, \"device\": 5}");
-    delay(1000); 
+    handleDevice(4, 1);
   });
 
   server.on("/devices/all/on", [](){
