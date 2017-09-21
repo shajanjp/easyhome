@@ -48,14 +48,14 @@ void turnEverything(int state){
 }
 
 void handleDevice(int device, int state){
-    String response = "{\"state\":";
-    response += state;
-    response += ", \"device\":";
-    response += (device + 1); 
-    response += "}";
-    turnDevice(device, state);
-    server.send(200, "application/json", response);
-    delay(1000);
+  String response = "{\"state\":";
+  response += state;
+  response += ", \"device\":";
+  response += (device + 1); 
+  response += "}";
+  turnDevice(device, state);
+  server.send(200, "application/json", response);
+  delay(1000);
 }
 
 void setup(void){
