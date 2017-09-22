@@ -74,83 +74,37 @@ void handleDeviceStatus(){
   server.send(200, "application/json", response);
   delay(1000);
 }
-
 void setup(void){
 // preparing GPIOs
   for (int i = 0; i < 5; ++i)
     pinMode(devices[i], OUTPUT);
-
   turnEverything(0);
-
   delay(1000);
-
+  
   Serial.begin(115200);
   WiFi.begin(ssid, password);
-
+  
   // Wait for connection
   while (WiFi.status() != WL_CONNECTED) {
     delay(1000);
   }
-  
+
   server.on("/", handleRoot);
   server.onNotFound(handleNotFound);
-
-  // List all devices
-  server.on("/devices", [](){
-    handleDeviceStatus();
-  });
-
+  
   // Control Individual devices
-  server.on("/devices/1/on", [](){
-    handleDevice(0, 1);
+  server.on("/devices", [](){
+    if(server.args() == 2){
+      if(server.arg("device") == "all"){
+        turnEverything(server.arg("status").toInt());
+        handleDeviceStatus();
+      }
+      else
+        handleDevice((server.arg("device").toInt() - 1), server.arg("status").toInt());
+    }
+    else
+      handleDeviceStatus();
   });
-
-  server.on("/devices/1/off", [](){
-    handleDevice(0, 0);
-  });
-
-  server.on("/devices/2/on", [](){
-    handleDevice(1, 1);
-  });
-
-  server.on("/devices/2/off", [](){
-    handleDevice(1, 0);
-  });
-
-  server.on("/devices/3/on", [](){
-    handleDevice(2, 1);
-  });
-
-  server.on("/devices/3/off", [](){
-    handleDevice(2, 0);
-  });
-
-  server.on("/devices/4/on", [](){
-    handleDevice(3, 1);
-  });
-
-  server.on("/devices/4/off", [](){
-    handleDevice(3, 0);
-  });
-
-  server.on("/devices/5/on", [](){
-    handleDevice(4, 1);
-  });
-
-  server.on("/devices/5/off", [](){
-    handleDevice(4, 0);
-  });
-
-  server.on("/devices/all/on", [](){
-    turnEverything(1);
-    handleDeviceStatus(); 
-  });
-
-  server.on("/devices/all/off", [](){
-    turnEverything(0);
-    handleDeviceStatus();
-  });
-
   server.begin();
 }
 
