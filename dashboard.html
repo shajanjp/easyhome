@@ -4,10 +4,19 @@
 	<meta charset="UTF-8">
 	<title>Auto Home</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.1/semantic.min.css">
+	<style>
+		#device-list .device,
+		#device-list .device img,
+		#device-dashboard .segment,
+		#device-dashboard .button,
+		#device-dashboard .input input{
+			border-radius: 0px;
+		}
+	</style>
 </head>
 <body>
 	<br>
-	<div class="ui container">
+	<div class="ui container" id="device-dashboard">
 		<div class="ui segments">
 			<div class="ui segment">
 				<h3 class="ui header">AutoHome Devices</h3>
@@ -16,7 +25,7 @@
 				</div>
 			</div>
 			<div class="ui segment">
-				<div class="ui five cards">
+				<div class="ui five cards" id="device-list">
 
 					<!-- Device 1 -->
 					<div class="card device" data-device="1" data-state="0" id="device-1">
