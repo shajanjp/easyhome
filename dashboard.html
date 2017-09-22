@@ -119,37 +119,40 @@
 	<script>
 		var makeSwitch = function(sno, state){
 			var device = $('#device-' + sno);
-			if(state == 1){
+			if(state == "1"){
 				device.find('.extra i').removeClass('red').addClass('green');
-				device.data('state', "on");
+				device.data('state', "1");
 			}
 			else{
 				device.find('.extra i').removeClass('green').addClass('red');
-				device.data('state', "off");
+				device.data('state', "0");
 			}
 		}
 
 		var nextState = function(current_state){
-			if (current_state == "on") 
-				return "off";
+			if (current_state == 1) 
+				return 0;
 			else
-				return "on";
+				return 1;
 		}
 
 		var checkDeviceStatus = function(){
-			$.get("http://192.168.1.100/devices", function( data ) {
+			$.get("http://" + $('#mcuip').val() + "/devices", function( data ) {
 				data.forEach(function(d){
 					makeSwitch(d.device, d.status);
 				});
 			});
 		}
 
-		checkDeviceStatus();
+		// checkDeviceStatus();
 
 		$('.device').on('click', function(){
 			var current_device = $(this);
-			$.get("http://192.168.1.100/devices/" + current_device.data('device') + "/" + nextState(current_device.data('state')), function( data ) {
-				makeSwitch(data.device, data.state);
+			var data = {};
+			data.device = current_device.data('device');
+			data.status = nextState(current_device.data('state'));
+			$.get("http://" + $('#mcuip').val() + "/devices", data, function(response){
+				makeSwitch(response.device, response.state);
 			});
 		});
 
@@ -158,9 +161,9 @@
 		});
 
 		$('#turn-off-devices').on('click', function(){
-			$.get("http://192.168.1.100/devices/all/off", function( data ) {
+			$.get("http://" + $('#mcuip').val() + "/devices?device=all&status=0", function( data ) {
 				data.forEach(function(d){
-					makeSwitch(d.device, d.status);
+					makeSwitch(d.device, d.state);
 				});
 			});
 		});
