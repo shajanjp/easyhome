@@ -22,7 +22,7 @@ void handleNotFound(){
 }
 
 void blinkDevice(int device){
-    device_status[device] = 2;
+    device_status[device] = 0;
     digitalWrite(devices[device], HIGH);
     delay(1000);
     digitalWrite(devices[device], LOW); 
@@ -67,12 +67,12 @@ void turnEverything(int state){
 }
 
 void handleDevice(int device, int state){
+  turnDevice(device, state);
   String response = "{\"device\":";
   response += (device + 1); 
   response += ", \"state\":";
-  response += state;
+  response += device_status[device];
   response += "}";
-  turnDevice(device, state);
   server.send(200, "application/json", response);
   delay(1000);
 }
