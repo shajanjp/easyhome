@@ -143,13 +143,17 @@
 	<script>
 		var makeSwitch = function(sno, state){
 			var device = $('#device-' + sno);
-			if(state == "1"){
-				device.find('.extra i').removeClass('red').addClass('green');
+			if(state == "0"){
+				device.find('.switch').removeClass('green').addClass('red');
+				device.find('.toggle').removeClass('yello').addClass('grey');
+				device.data('state', "0");
+			}
+			else if(state == "1"){
+				device.find('.switch').removeClass('red').addClass('green');
 				device.data('state', "1");
 			}
-			else{
-				device.find('.extra i').removeClass('green').addClass('red');
-				device.data('state', "0");
+			else if(state == "2"){
+				device.find('.toggle').removeClass('grey').addClass('yellow');
 			}
 		}
 
