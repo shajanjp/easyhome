@@ -46,7 +46,7 @@ void turnDevice(int device, int state){
     digitalWrite(devices[device], HIGH);
     device_status[device] = 1;
   }
-  else(state == 2){
+  else if (state == 2){
     blinkDevice(device);
   }
 }
