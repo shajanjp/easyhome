@@ -21,14 +21,33 @@ void handleNotFound(){
   server.send(404, "application/json", "{\"message\":\"Invalid request\"}");
 }
 
+void blinkDevice(int device){
+    device_status[device] = 2;
+    digitalWrite(devices[device], HIGH);
+    delay(1000);
+    digitalWrite(devices[device], LOW); 
+    delay(1000);
+    digitalWrite(devices[device], HIGH);
+    delay(1000);
+    digitalWrite(devices[device], LOW); 
+    delay(1000);
+    digitalWrite(devices[device], HIGH);
+    delay(1000);
+    digitalWrite(devices[device], LOW); 
+    delay(1000);
+}
+
 void turnDevice(int device, int state){
-  if(state == 1){
+  if(state == 0){
+    digitalWrite(devices[device], LOW);
+    device_status[device] = 0;
+  }
+  else if(state == 1){
     digitalWrite(devices[device], HIGH);
     device_status[device] = 1;
   }
-  else{
-    digitalWrite(devices[device], LOW);
-    device_status[device] = 0;
+  else(state == 2){
+    blinkDevice(device);
   }
 }
 
