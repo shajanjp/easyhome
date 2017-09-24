@@ -173,10 +173,9 @@
 		}
 
 		// checkDeviceStatus();
-
-		$('.device').on('click', function(){
-			var current_device = $(this);
-			var data = {};
+		$('.switch').on('click', function(){
+			let current_device = $(this).closest('.device');
+			let data = {};
 			data.device = current_device.data('device');
 			data.status = nextState(current_device.data('state'));
 			$.get("http://" + $('#mcuip').val() + "/devices", data, function(response){
