@@ -214,7 +214,7 @@
 		$('#turn-off-devices').on('click', function(){
 			$.get("http://" + $('#mcuip').val() + "/devices?device=all&status=0", function(data) {
 				data.forEach(function(d){
-					makeSwitch(d.device, d.state);
+					makeSwitch(d.device, d.status);
 				});
 			});
 		});
