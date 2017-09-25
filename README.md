@@ -4,11 +4,11 @@ Control upto 5 devices.
 
 ## PIN Connections
 
-GPIO 14 => Device 1 
-GPIO 12 => Device 2 
-GPIO 13 => Device 3 
-GPIO 15 => Device 4 
-GPIO 3 => Device 5 
+GPIO 14 => Device 1
+GPIO 12 => Device 2
+GPIO 13 => Device 3
+GPIO 15 => Device 4
+GPIO 3 => Device 5
 
 ## API
 
@@ -46,19 +46,19 @@ GPIO 3 => Device 5
 ### Turn device 1 on
 
 #### Request :
-`GET /devices/1/on`
+`GET /devices?device=1&status=1`
 #### Response :
 ```json
 {
     "device": 1,
-    "state": 1
+    "status": 1
 }
 ```
 
-### Turn device all devices off
+### Turn off all devices
 
 #### Request :
-`GET /devices/all/off`
+`GET /devices?device=all&state=0`
 #### Response :
 ```json
 [
