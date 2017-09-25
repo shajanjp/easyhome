@@ -24,17 +24,17 @@ void handleNotFound(){
 void blinkDevice(int device){
     device_status[device] = 0;
     digitalWrite(devices[device], HIGH);
-    delay(1000);
+    delay(500);
     digitalWrite(devices[device], LOW); 
-    delay(1000);
+    delay(500);
     digitalWrite(devices[device], HIGH);
-    delay(1000);
+    delay(500);
     digitalWrite(devices[device], LOW); 
-    delay(1000);
+    delay(500);
     digitalWrite(devices[device], HIGH);
-    delay(1000);
+    delay(500);
     digitalWrite(devices[device], LOW); 
-    delay(1000);
+    delay(500);
 }
 
 void turnDevice(int device, int state){
