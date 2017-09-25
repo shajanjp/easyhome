@@ -17,6 +17,10 @@
 <body>
 	<br>
 	<div class="ui container" id="device-dashboard">
+		<div class="ui input">
+			<input type="text" id="mcuip" placeholder="Micro controller IP">
+		</div>
+		<button class="ui primary labeled icon button" id="connect-device"><i class="refresh icon"></i>Connect Device</button>
 		<div class="ui segments">
 			<div class="ui segment">
 				<h3 class="ui header">AutoHome Devices</h3>
@@ -132,9 +136,6 @@
 				</div>
 			</div>
 		</div>
-		<div class="ui input">
-			<input type="text" id="mcuip" placeholder="Micro controller IP">
-		</div>
 		<button class="ui primary labeled icon button" id="check-device-status"><i class="refresh icon"></i>Check Status</button>
 		<button class="ui basic red labeled icon button" id="turn-off-devices"><i class="circle icon"></i>Switch OFF Devices</button>
 	</div>
@@ -196,6 +197,17 @@
 
 		$('#check-device-status').on('click', function(){
 			checkDeviceStatus();
+		});
+
+		$('#connect-device').on('click', function(){
+			$.get("http://" + $('#mcuip').val() + "/devices", function( data ) {
+				if(data){
+					data.forEach(function(d){
+						makeSwitch(d.device, d.status);
+					});
+					$('#connect-device').removeClass('primary').addClass('green').html('<i class="refresh icon"></i>Connected');
+				}
+			});
 		});
 
 		$('#turn-off-devices').on('click', function(){
