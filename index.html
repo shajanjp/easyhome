@@ -187,7 +187,6 @@
 
 		var checkDeviceStatus = function(){
 			$.get("http://" + $('#mcuip').val() + "/devices", function(data) {
-				alert("hello");
 				data.forEach(function(d){
 					makeSwitch(d.device, d.status);
 				});
