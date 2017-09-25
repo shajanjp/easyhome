@@ -166,7 +166,8 @@
 		}
 
 		var checkDeviceStatus = function(){
-			$.get("http://" + $('#mcuip').val() + "/devices", function( data ) {
+			$.get("http://" + $('#mcuip').val() + "/devices", function(data) {
+				alert("hello");
 				data.forEach(function(d){
 					makeSwitch(d.device, d.status);
 				});
@@ -200,7 +201,7 @@
 		});
 
 		$('#connect-device').on('click', function(){
-			$.get("http://" + $('#mcuip').val() + "/devices", function( data ) {
+			$.get("http://" + $('#mcuip').val() + "/devices", function(data) {
 				if(data){
 					data.forEach(function(d){
 						makeSwitch(d.device, d.status);
@@ -211,7 +212,7 @@
 		});
 
 		$('#turn-off-devices').on('click', function(){
-			$.get("http://" + $('#mcuip').val() + "/devices?device=all&status=0", function( data ) {
+			$.get("http://" + $('#mcuip').val() + "/devices?device=all&status=0", function(data) {
 				data.forEach(function(d){
 					makeSwitch(d.device, d.state);
 				});
