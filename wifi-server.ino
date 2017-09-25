@@ -2,8 +2,8 @@
 #include <WiFiClient.h>
 #include <ESP8266WebServer.h>
 
-const char* ssid = "GWC"; // your connection name
-const char* password = "shaj1234"; // your connection password
+const char* ssid = "GWC"; // wifi SSID
+const char* password = "shaj1234"; // wifi password
 
 ESP8266WebServer server(80);
 
@@ -11,16 +11,17 @@ int device_status[4];
 int requests_served = 0;
 int devices[] = {14,12,13,15,3};
 
-//root page can be accessed only if authentification is ok
+// home page
 void handleRoot(){
   server.send(200, "text/html", "{\"message\":\"Welcome to AutoHome\"}");
 }
 
-//no need authentification
+// 404
 void handleNotFound(){
   server.send(404, "application/json", "{\"message\":\"Invalid request\"}");
 }
 
+// Blinking device
 void blinkDevice(int device){
     device_status[device] = 0;
     digitalWrite(devices[device], HIGH);
@@ -37,6 +38,7 @@ void blinkDevice(int device){
     delay(500);
 }
 
+// Swithing devices
 void turnDevice(int device, int state){
   if(state == 0){
     digitalWrite(devices[device], LOW);
@@ -51,6 +53,7 @@ void turnDevice(int device, int state){
   }
 }
 
+// Switching devices
 void turnEverything(int state){
   if(state == 1){
     for (int i = 0; i < 5; ++i){
@@ -66,6 +69,7 @@ void turnEverything(int state){
   }
 }
 
+// Handle deivce requests
 void handleDevice(int device, int state){
   turnDevice(device, state);
   String response = "{\"device\":";
@@ -77,6 +81,7 @@ void handleDevice(int device, int state){
   delay(1000);
 }
 
+// Device status
 void handleDeviceStatus(){
   String response = "[";
   for (int i = 0; i < 5; ++i){
@@ -95,7 +100,7 @@ void handleDeviceStatus(){
 }
 
 void setup(void){
-// preparing GPIOs
+  // preparing GPIOs
   for (int i = 0; i < 5; ++i)
     pinMode(devices[i], OUTPUT);
   turnEverything(0);
