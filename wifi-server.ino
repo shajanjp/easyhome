@@ -8,7 +8,7 @@ const char* password = "shaj1234"; // your connection password
 ESP8266WebServer server(80);
 
 int device_status[4]; 
-
+int requests_served = 0;
 int devices[] = {14,12,13,15,3};
 
 //root page can be accessed only if authentification is ok
@@ -93,6 +93,7 @@ void handleDeviceStatus(){
   server.send(200, "application/json", response);
   delay(1000);
 }
+
 void setup(void){
 // preparing GPIOs
   for (int i = 0; i < 5; ++i)
@@ -113,6 +114,7 @@ void setup(void){
   
   // Control Individual devices
   server.on("/devices", [](){
+    requests_served++;
     if(server.args() == 2){
       if(server.arg("device") == "all"){
         turnEverything(server.arg("status").toInt());
