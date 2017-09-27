@@ -1,4 +1,4 @@
-# AutoHome
+# EasyHome
 Home automation using NodeMCU.
 Control upto 5 devices.
 
