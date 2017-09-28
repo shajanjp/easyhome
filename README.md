@@ -2,6 +2,8 @@
 Home automation using NodeMCU.
 Control upto 5 devices.
 
+![](https://github.com/shajanjp/shajanjp.github.io/raw/master/uploads/easyhome-homepage.jpg)
+
 ## PIN Connections
 
 GPIO 14 => Device 1
