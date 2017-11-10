@@ -37,121 +37,115 @@
 		<button class="ui primary labeled icon flat button" id="connect-device"><i class="refresh icon"></i>Connect Device</button>
 		<a href="" class="circular ui icon button"><i class="green help icon"></i></a>
 		<a href="https://github.com/shajanjp/easyhome/" target="_blank" class="ui circular github icon button"><i class="github icon"></i></a>
-		<div class="ui segments">
-			<div class="ui segment">
-				<h3 class="ui header">EasyHome Devices</h3>
+		<h1 class="ui white header">EasyHome Devices</h1>
+		<div class="ui five stackable cards" id="device-list">
+
+			<!-- Device 1 -->
+			<div class="card device" data-device="1" data-state="0" id="device-1">
+				<div class="image">
+					<img src="device.jpg">
+				</div>
+				<div class="content">
+					<div class="header" contenteditable>Device 1</div>
+					<div class="meta">
+						<a>GPIO 14</a>
+					</div>
+				</div>
+				<div class="extra content">
+					<span class="right floated">
+						<i class="red circle icon switch"></i>
+					</span>
+					<span class="right floated">
+						<i class="grey circle icon toggle"></i>
+					</span>
+				</div>
 			</div>
-			<div class="ui segment">
-				<div class="ui five stackable cards" id="device-list">
 
-					<!-- Device 1 -->
-					<div class="card device" data-device="1" data-state="0" id="device-1">
-						<div class="image">
-							<img src="device.jpg">
-						</div>
-						<div class="content">
-							<div class="header" contenteditable>Device 1</div>
-							<div class="meta">
-								<a>GPIO 14</a>
-							</div>
-						</div>
-						<div class="extra content">
-							<span class="right floated">
-								<i class="red circle icon switch"></i>
-							</span>
-							<span class="right floated">
-								<i class="grey circle icon toggle"></i>
-							</span>
-						</div>
+			<!-- Device 2 -->
+			<div class="card device" data-device="2" data-state="0" id="device-2">
+				<div class="image">
+					<img src="device.jpg">
+				</div>
+				<div class="content">
+					<div class="header" contenteditable>Device 2</div>
+					<div class="meta">
+						<a>GPIO 12</a>
 					</div>
+				</div>
+				<div class="extra content">
+					<span class="right floated">
+						<i class="red circle icon switch"></i>
+					</span>
+					<span class="right floated">
+						<i class="grey circle icon toggle"></i>
+					</span>
+				</div>
+			</div>
 
-					<!-- Device 2 -->
-					<div class="card device" data-device="2" data-state="0" id="device-2">
-						<div class="image">
-							<img src="device.jpg">
-						</div>
-						<div class="content">
-							<div class="header" contenteditable>Device 2</div>
-							<div class="meta">
-								<a>GPIO 12</a>
-							</div>
-						</div>
-						<div class="extra content">
-							<span class="right floated">
-								<i class="red circle icon switch"></i>
-							</span>
-							<span class="right floated">
-								<i class="grey circle icon toggle"></i>
-							</span>
-						</div>
+			<!-- Device 3 -->
+			<div class="card device" data-device="3" data-state="0" id="device-3">
+				<div class="image">
+					<img src="device.jpg">
+				</div>
+				<div class="content">
+					<div class="header" contenteditable>Device 3</div>
+					<div class="meta">
+						<a>GPIO 13</a>
 					</div>
+				</div>
+				<div class="extra content">
+					<span class="right floated">
+						<i class="red circle icon switch"></i>
+					</span>
+					<span class="right floated">
+						<i class="grey circle icon toggle"></i>
+					</span>
+				</div>
+			</div>
 
-					<!-- Device 3 -->
-					<div class="card device" data-device="3" data-state="0" id="device-3">
-						<div class="image">
-							<img src="device.jpg">
-						</div>
-						<div class="content">
-							<div class="header" contenteditable>Device 3</div>
-							<div class="meta">
-								<a>GPIO 13</a>
-							</div>
-						</div>
-						<div class="extra content">
-							<span class="right floated">
-								<i class="red circle icon switch"></i>
-							</span>
-							<span class="right floated">
-								<i class="grey circle icon toggle"></i>
-							</span>
-						</div>
+			<!-- Device 4 -->
+			<div class="card device" data-device="4" data-state="0" id="device-4">
+				<div class="image">
+					<img src="device.jpg">
+				</div>
+				<div class="content">
+					<div class="header" contenteditable>Device 4</div>
+					<div class="meta">
+						<a>GPIO 15</a>
 					</div>
+				</div>
+				<div class="extra content">
+					<span class="right floated">
+						<i class="red circle icon switch"></i>
+					</span>
+					<span class="right floated">
+						<i class="grey circle icon toggle"></i>
+					</span>
+				</div>
+			</div>
 
-					<!-- Device 4 -->
-					<div class="card device" data-device="4" data-state="0" id="device-4">
-						<div class="image">
-							<img src="device.jpg">
-						</div>
-						<div class="content">
-							<div class="header" contenteditable>Device 4</div>
-							<div class="meta">
-								<a>GPIO 15</a>
-							</div>
-						</div>
-						<div class="extra content">
-							<span class="right floated">
-								<i class="red circle icon switch"></i>
-							</span>
-							<span class="right floated">
-								<i class="grey circle icon toggle"></i>
-							</span>
-						</div>
+			<!-- Device 5 -->
+			<div class="card device" data-device="5" data-state="0" id="device-5">
+				<div class="image">
+					<img src="device.jpg">
+				</div>
+				<div class="content">
+					<div class="header" contenteditable>Device 5</div>
+					<div class="meta">
+						<a>GPIO 3</a>
 					</div>
-
-					<!-- Device 5 -->
-					<div class="card device" data-device="5" data-state="0" id="device-5">
-						<div class="image">
-							<img src="device.jpg">
-						</div>
-						<div class="content">
-							<div class="header" contenteditable>Device 5</div>
-							<div class="meta">
-								<a>GPIO 3</a>
-							</div>
-						</div>
-						<div class="extra content">
-							<span class="right floated">
-								<i class="red circle icon switch"></i>
-							</span>
-							<span class="right floated">
-								<i class="grey circle icon toggle"></i>
-							</span>
-						</div>
-					</div>
-
+				</div>
+				<div class="extra content">
+					<span class="right floated">
+						<i class="red circle icon switch"></i>
+					</span>
+					<span class="right floated">
+						<i class="grey circle icon toggle"></i>
+					</span>
 				</div>
 			</div>
 		</div>
+		<br/>
 		<button class="ui primary labeled icon flat button" id="check-device-status"><i class="refresh icon"></i>Check Status</button>
 		<button class="ui red labeled icon flat button" id="turn-off-devices"><i class="circle icon"></i>Turn OFF Devices</button>
 	</div>
