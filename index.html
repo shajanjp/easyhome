@@ -19,6 +19,7 @@
 	#device-list .device,
 	#device-list .device img,
 	#device-dashboard .segment,
+	#device-dashboard .button,
 	#device-dashboard .button.flat,
 	#device-dashboard .input input{
 		border-radius: 0px;
@@ -31,14 +32,14 @@
 <body class="calm-bg">
 	<br>
 	<div class="ui container" id="device-dashboard">
-		<div class="ui input">
+		<div class="ui action input">
 			<input type="text" id="mcuip" placeholder="Micro controller IP">
+			<button class="ui right button" id="connect-device">Connect</button>
+			<button class="ui blue icon button" id="check-device-status"><i class="refresh icon"></i></button>
 		</div>
-		<button class="ui primary labeled icon flat button" id="connect-device"><i class="refresh icon"></i>Connect Device</button>
-		<a href="" class="circular ui icon button"><i class="green help icon"></i></a>
-		<a href="https://github.com/shajanjp/easyhome/" target="_blank" class="ui circular github icon button"><i class="github icon"></i></a>
+		
 		<h1 class="ui white header">EasyHome Devices</h1>
-		<div class="ui five stackable cards" id="device-list">
+		<div class="ui six stackable cards" id="device-list">
 
 			<!-- Device 1 -->
 			<div class="card device" data-device="1" data-state="0" id="device-1">
@@ -144,10 +145,34 @@
 					</span>
 				</div>
 			</div>
+
+			<!-- Device 6 -->
+			<div class="card device" data-device="6" data-state="0" id="device-6">
+				<div class="image">
+					<img src="device.jpg">
+				</div>
+				<div class="content">
+					<div class="header" contenteditable>Device 6</div>
+					<div class="meta">
+						<a>NIL</a>
+					</div>
+				</div>
+				<div class="extra content">
+					<span class="right floated">
+						<i class="red circle icon switch"></i>
+					</span>
+					<span class="right floated">
+						<i class="grey circle icon toggle"></i>
+					</span>
+				</div>
+			</div>
+
 		</div>
 		<br/>
-		<button class="ui primary labeled icon flat button" id="check-device-status"><i class="refresh icon"></i>Check Status</button>
+
 		<button class="ui red labeled icon flat button" id="turn-off-devices"><i class="circle icon"></i>Turn OFF Devices</button>
+		<a href="" class="circular ui icon button"><i class="green help icon"></i></a>
+		<a href="https://github.com/shajanjp/easyhome/" target="_blank" class="ui circular github icon button"><i class="github icon"></i></a>
 	</div>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/semantic-ui/2.2.1/semantic.min.js"></script>
