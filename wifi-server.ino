@@ -17,7 +17,7 @@ int devices[] = {14,12,13,15,3};
 
 // home page
 void handleRoot(){
-  server.send(200, "text/html", "{\"message\":\"Welcome to AutoHome\"}");
+  server.send(200, "application/json", "{\"message\":\"Welcome to AutoHome\"}");
 }
 
 // 404
