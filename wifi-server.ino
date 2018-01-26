@@ -117,6 +117,7 @@ void setup(void){
   while (WiFi.status() != WL_CONNECTED) {
     delay(1000);
   }
+  Serial.println(WiFi.localIP);
 
   server.on("/", handleRoot);
   server.onNotFound(handleNotFound);
