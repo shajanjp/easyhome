@@ -31,7 +31,7 @@ int plug_status[4];
 
 // home page
 void handleRoot(){
-  server.send(200, "application/json", "{\"msg\":\"Welcome to EasyHome\"}");
+  server.send(200, "application/json", '{ "msg": "Welcome to EasyHome" }');
 }
 
 // 404
