@@ -32,10 +32,6 @@ Control upto 5 devices.
     {
         "plug": 4,
         "status": 0
-    },
-    {
-        "plug": 5,
-        "status": 0
     }
 ]
 ```
