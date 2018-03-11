@@ -27,14 +27,19 @@ RgbColor color;
 uint8_t pos;
 RgbColor black(0, 0, 0);
 
-// home page
+// Home API
 void handleRoot(){
-  server.send(200, "application/json", "{ \"msg\": \"Welcome to EasyHome\", \"status\": \"true\", \"version\": \"1.05 Beta\" }");
+  server.send(200, "application/json", "{ \"msg\": \"Welcome to EasyHome\", \"version\": \"1.05 Beta\" }");
 }
 
 // 404
 void handleNotFound(){
-  server.send(404, "application/json", "{ \"msg\": \"Invalid request\" }");
+  server.send(404, "application/json", "{ \"msg\": \"Invalid API request\" }");
+}
+
+// Strip Success
+void handleStripSuccess(){
+  server.send(200, "application/json", "{ \"msg\": \"Enjoy the colors\" }");
 }
 
 // Set all PINS ON or OFF
