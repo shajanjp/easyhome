@@ -174,14 +174,14 @@ void setup(void) {
   server.on("/strip", [](){
     if(server.args() == 3) {
       if(server.arg("r") && server.arg("g") && server.arg("b")) {
-        setThese(0, 29, RgbColor(server.arg("r").toInt(), server.arg("g").toInt(), server.arg("b").toInt()));
+        setThese(0, PixelCount - 1, RgbColor(server.arg("r").toInt(), server.arg("g").toInt(), server.arg("b").toInt()));
         server.send(200, "application/json", "{ \"msg\": \"Strip color changed\" }");
       }
       else
         server.send(400, "application/json", "{ \"msg\": \"Invalid Strip API Params\" }");
     }
     else
-        server.send(400, "application/json", "{ \"msg\": \"Invalid Strip API Params\" }");
+      server.send(400, "application/json", "{ \"msg\": \"Invalid Strip API Params\" }");
   });
 
   server.on("/plugs", []() {
