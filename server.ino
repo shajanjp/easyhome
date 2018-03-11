@@ -25,6 +25,7 @@ int plug_status[4];
 // For rainbow
 RgbColor color;
 uint8_t pos;
+RgbColor black(0, 0, 0);
 
 // home page
 void handleRoot(){
