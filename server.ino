@@ -128,7 +128,7 @@ void handleDevice(int plug, int state){
   turnDevice(plug, state);
   String response = "{\"plug\":";
   response += (plug + 1); 
-  response += ", \"state\":";
+  response += ", \"status\":";
   response += plug_status[plug];
   response += "}";
   server.send(200, "application/json", response);
