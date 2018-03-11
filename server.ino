@@ -18,16 +18,13 @@ const uint8_t PixelPin = 2;  // make sure to set this to the correct pin, ignore
 // three element pixels, in different order and speeds
 NeoPixelBus<NeoGrbFeature, Neo800KbpsMethod> strip(PixelCount, PixelPin);
 
-RgbColor red(colorSaturation, 0, 0);
-RgbColor green(0, colorSaturation, 0);
-RgbColor blue(0, 0, colorSaturation);
-RgbColor whatsapp(50, 208, 50);
-RgbColor white(colorSaturation);
-RgbColor black(0);
-
 // Switches d1, d2, d5, d6 || 5, 4, 14, 12
 int plugs[] = {5,4,14,12};
 int plug_status[4];
+
+// For rainbow
+RgbColor color;
+uint8_t pos;
 
 // home page
 void handleRoot(){
