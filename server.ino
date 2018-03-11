@@ -64,6 +64,27 @@ void rainbow(){
   }
 }
 
+void runThrough(int start, int end, RgbColor myColor, int speed, int direction){
+  if (direction == 1) {
+    for (int i = start; i <= end; ++i)
+    {
+      setThese(start, end, RgbColor(0, 0, 0));
+      strip.SetPixelColor(i, myColor);
+      strip.Show();
+      delay(speed);
+    }
+  }
+  else if(direction == 0) {
+    for (int j = end; j >= start; j--)
+    {
+      setThese(start, end, RgbColor(0, 0, 0));
+      strip.SetPixelColor(j, myColor);
+      strip.Show();
+      delay(speed);
+    }
+  }
+
+}
 // Input a value 0 to 255 to get a color value.
 // The colours are a transition r - g - b - back to r.
 RgbColor Wheel(uint8_t WheelPos) 
