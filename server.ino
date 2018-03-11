@@ -179,16 +179,17 @@ void setup(void) {
   });
 
   server.on("/strip", [](){
-    if(server.args() == 3) {
-      if(server.arg("r") && server.arg("g") && server.arg("b")) {
-        setThese(0, PixelCount - 1, RgbColor(server.arg("r").toInt(), server.arg("g").toInt(), server.arg("b").toInt()));
-        server.send(200, "application/json", "{ \"msg\": \"Strip color changed\" }");
-      }
+    if(server.arg("r") != "" && server.arg("g") !="" && server.arg("b") != "") {
+      handleStripSuccess();
+      if(server.arg("type") == "roll")
+        return runThrough(0, PixelCount - 1, RgbColor(server.arg("r").toInt(), server.arg("g").toInt(), server.arg("b").toInt()), 10, 3);
+      if(server.arg("type") == "snake")
+        return runThrough(0, PixelCount - 1, RgbColor(server.arg("r").toInt(), server.arg("g").toInt(), server.arg("b").toInt()), 150, 1);
       else
-        server.send(400, "application/json", "{ \"msg\": \"Invalid Strip API Params\" }");
+        return setThese(0, PixelCount - 1, RgbColor(server.arg("r").toInt(), server.arg("g").toInt(), server.arg("b").toInt()));
     }
     else
-      server.send(400, "application/json", "{ \"msg\": \"Invalid Strip API Params\" }");
+      handleNotFound();
   });
 
   server.on("/plugs", []() {
