@@ -1,6 +1,6 @@
 # EasyHome
-Home automation using NodeMCU.
-Control upto 4 devices and neopixel strips.
+Home automation and ambient lighting using NodeMCU.
+Control up to 4 devices and neopixel strips.
 
 ![](https://i.imgur.com/E4ydN86.png)
 
