@@ -41,7 +41,7 @@ var nextState = function(current_state){
 }
 
 var checkDeviceStatus = function(){
-	$.get("http://" + $('#mcuip').val() + "/devices", function(data) {
+	$.get("http://" + $('#mcuip').val() + "/plugs", function(data) {
 		data.forEach(function(d){
 			makeSwitch(d.device, d.status);
 		});
@@ -51,9 +51,9 @@ var checkDeviceStatus = function(){
 $('.switch').on('click', function(){
 	let current_device = $(this).closest('.device');
 	let data = {};
-	data.device = current_device.data('device');
+	data.plug = current_device.data('device');
 	data.status = nextState(current_device.data('state'));
-	$.get("http://" + $('#mcuip').val() + "/devices", data, function(response){
+	$.get("http://" + $('#mcuip').val() + "/plugs", data, function(response){
 		makeSwitch(response.device, response.state);
 	});
 });
@@ -61,10 +61,10 @@ $('.switch').on('click', function(){
 $('.toggle').on('click', function(){
 	let current_device = $(this).closest('.device');
 	let data = {};
-	data.device = current_device.data('device');
+	data.plug = current_device.data('device');
 	data.status = 2;
-	makeSwitch(data.device, data.status);
-	$.get("http://" + $('#mcuip').val() + "/devices", data, function(response){
+	makeSwitch(data.plug, data.status);
+	$.get("http://" + $('#mcuip').val() + "/plugs", data, function(response){
 		makeSwitch(response.device, response.state);
 	});
 });
@@ -74,7 +74,7 @@ $('#check-device-status').on('click', function(){
 });
 
 $('#connect-device').on('click', function(){
-	$.get("http://" + $('#mcuip').val() + "/devices", function(data) {
+	$.get("http://" + $('#mcuip').val() + "/plugs", function(data) {
 		if(data){
 			data.forEach(function(d){
 				makeSwitch(d.device, d.status);
@@ -85,7 +85,7 @@ $('#connect-device').on('click', function(){
 });
 
 $('#turn-off-devices').on('click', function(){
-	$.get("http://" + $('#mcuip').val() + "/devices?device=all&status=0", function(data) {
+	$.get("http://" + $('#mcuip').val() + "/plugs?device=all&status=0", function(data) {
 		data.forEach(function(d){
 			makeSwitch(d.device, d.status);
 		});
