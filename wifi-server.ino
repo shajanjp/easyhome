@@ -1,144 +1,144 @@
-/*
-Server for EasyHome
-https://github.com/shajanjp/easyhome
- */
 #include <ESP8266WiFi.h>
 #include <WiFiClient.h>
 #include <ESP8266WebServer.h>
+#include <ESP8266mDNS.h>
 
-const char* ssid = "GWC"; // wifi SSID
-const char* password = "shaj1234"; // wifi password
+const char* ssid = "RedAnt"; // wifi SSID
+const char* password = "0n3st3p@h3@d"; // wifi password
 
 ESP8266WebServer server(80);
 
-int device_status[4]; 
-int requests_served = 0;
-int devices[] = {14,12,13,15,3};
+#include <NeoPixelBus.h>
+ 
+const uint16_t PixelCount = 30; // this example assumes 4 pixels, making it smaller will cause a failure
+const uint8_t PixelPin = 2;  // make sure to set this to the correct pin, ignored for Esp8266 and takes RX pin by default
+
+#define colorSaturation 255
+
+// three element pixels, in different order and speeds
+NeoPixelBus<NeoGrbFeature, Neo800KbpsMethod> strip(PixelCount, PixelPin);
+
+RgbColor red(colorSaturation, 0, 0);
+RgbColor green(0, colorSaturation, 0);
+RgbColor blue(0, 0, colorSaturation);
+RgbColor whatsapp(50, 208, 50);
+RgbColor white(colorSaturation);
+RgbColor black(0);
+
+// Switches d1, d2, d5, d6 || 5, 4, 14, 12
+int plugs[] = {5,4,14,12};
+int plug_status[4];
 
 // home page
 void handleRoot(){
-  server.send(200, "application/json", "{\"message\":\"Welcome to AutoHome\"}");
+  server.send(200, "application/json", "{\"msg\":\"Welcome to EasyHome\"}");
 }
 
 // 404
 void handleNotFound(){
-  server.send(404, "application/json", "{\"message\":\"Invalid request\"}");
+  server.send(404, "application/json", "{\"msg\":\"Invalid request\"}");
 }
 
-// Blinking device
-void blinkDevice(int device){
-    device_status[device] = 0;
-    digitalWrite(devices[device], HIGH);
-    delay(500);
-    digitalWrite(devices[device], LOW); 
-    delay(500);
-    digitalWrite(devices[device], HIGH);
-    delay(500);
-    digitalWrite(devices[device], LOW); 
-    delay(500);
-    digitalWrite(devices[device], HIGH);
-    delay(500);
-    digitalWrite(devices[device], LOW); 
-    delay(500);
+// Set all PINS ON or OFF
+void setThese(int start, int end, RgbColor myColor){
+  for (int i = start; i <= end; ++i)
+  {
+    strip.SetPixelColor(i, myColor);
+  }
+  strip.Show();
 }
 
-// Swithing devices
-void turnDevice(int device, int state){
+// Swithing plugs
+void turnDevice(int plug, int state){
   if(state == 0){
-    digitalWrite(devices[device], LOW);
-    device_status[device] = 0;
+    digitalWrite(plugs[plug], LOW);
+    plug_status[plug] = 0;
   }
   else if(state == 1){
-    digitalWrite(devices[device], HIGH);
-    device_status[device] = 1;
-  }
-  else if (state == 2){
-    blinkDevice(device);
-  }
-}
-
-// Switching devices
-void turnEverything(int state){
-  if(state == 1){
-    for (int i = 0; i < 5; ++i){
-      digitalWrite(devices[i], HIGH);
-      device_status[i] = 1;
-    }
-  }
-  else{
-    for (int i = 0; i < 5; ++i){
-      digitalWrite(devices[i], LOW);
-      device_status[i] = 0;
-    }
+    digitalWrite(plugs[plug], HIGH);
+    plug_status[plug] = 1;
   }
 }
 
 // Handle deivce requests
-void handleDevice(int device, int state){
-  turnDevice(device, state);
-  String response = "{\"device\":";
-  response += (device + 1); 
+void handleDevice(int plug, int state){
+  turnDevice(plug, state);
+  String response = "{\"plug\":";
+  response += (plug + 1); 
   response += ", \"state\":";
-  response += device_status[device];
+  response += plug_status[plug];
   response += "}";
   server.send(200, "application/json", response);
   delay(1000);
 }
 
-// Device status
-void handleDeviceStatus(){
-  String response = "[";
-  for (int i = 0; i < 5; ++i){
-    response += "{\"device\":";
-    response += (i + 1);
-    response += ", \"status\":";
-    response += device_status[i];
-    if(i !=4 )
-      response += "},";
-    else
-      response += "}";
-  }
-  response += "]";
-  server.send(200, "application/json", response);
-  delay(1000);
-}
+// Main Setup
+void setup(void) {
 
-void setup(void){
-  // preparing GPIOs
-  for (int i = 0; i < 5; ++i)
-    pinMode(devices[i], OUTPUT);
-  turnEverything(0);
-  delay(1000);
-  
+  pinMode(5, OUTPUT);
+  digitalWrite(5, LOW);
+
+  pinMode(4, OUTPUT);
+  digitalWrite(4, LOW);
+
+  pinMode(14, OUTPUT);
+  digitalWrite(14, LOW);
+
+  pinMode(12, OUTPUT);
+  digitalWrite(12, LOW);
+
   Serial.begin(115200);
+  WiFi.mode(WIFI_STA);
   WiFi.begin(ssid, password);
-  
+  Serial.println("");
+
   // Wait for connection
   while (WiFi.status() != WL_CONNECTED) {
-    delay(1000);
+    delay(500);
+    Serial.print(".");
   }
-  
-  // Serial.println(WiFi.localIP);
-  Serial.println("Connected...");
+
+  Serial.println("");
+  Serial.print("Connected to...");
+  Serial.println(ssid);
+  Serial.print("IP address: ");
+  Serial.println(WiFi.localIP());
+
+  if (MDNS.begin("ESP8266")) {
+    Serial.println("MDNS responder started...");
+  }
 
   server.on("/", handleRoot);
-  server.onNotFound(handleNotFound);
-  
-  // Control Individual devices
-  server.on("/devices", [](){
-    requests_served++;
-    if(server.args() == 2){
-      if(server.arg("device") == "all"){
-        turnEverything(server.arg("status").toInt());
-        handleDeviceStatus();
+
+  server.on("/strip", [](){
+    if(server.args() == 3) {
+      if(server.arg("r") && server.arg("g") && server.arg("b")) {
+        setThese(0, 29, RgbColor(server.arg("r").toInt(), server.arg("g").toInt(), server.arg("b").toInt()));
+        server.send(200, "application/json", "{\"msg\":\"Strip color changed\"}");
       }
       else
-        handleDevice((server.arg("device").toInt() - 1), server.arg("status").toInt());
+        server.send(400, "application/json", "{\"msg\":\"Invalid Strip API Params\"}");
     }
     else
-      handleDeviceStatus();
+        server.send(400, "application/json", "{\"msg\":\"Invalid Strip API Params\"}");
   });
+
+  server.on("/plugs", []() {
+    if(server.args() == 2) {
+      if(server.arg("plug").toInt() && server.arg("status")) {
+        handleDevice(server.arg("plug").toInt() - 1, server.arg("status").toInt());
+      }
+      else
+        server.send(400, "application/json", "{\"msg\":\"Invalid Plug API Params\"}");
+    }
+  });
+
+  server.onNotFound(handleNotFound);
+
   server.begin();
+  Serial.println("HTTP server started...");
+  strip.Begin();
+  strip.Show();
 }
 
 void loop(void){
