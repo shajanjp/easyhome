@@ -33,7 +33,7 @@ void handleRoot(){
 
 // 404
 void handleNotFound(){
-  server.send(404, "application/json", "{\"msg\":\"Invalid request\"}");
+  server.send(404, "application/json", "{ \"msg\": \"Invalid request\" }");
 }
 
 // Set all PINS ON or OFF
