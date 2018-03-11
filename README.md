@@ -1,6 +1,6 @@
 # EasyHome
-Home automation using NodeMCU.
-Control upto 5 devices.
+Home automation and ambient lighting using NodeMCU.
+Control up to 4 devices and neopixel strips.
 
 ![](https://i.imgur.com/E4ydN86.png)
 
@@ -11,6 +11,7 @@ Control upto 5 devices.
  * Device 4 => GPIO 12 =>  D6
 
 ## API
+
 ### Get device details
 #### Request :
 `GET /plugs`
@@ -37,7 +38,6 @@ Control upto 5 devices.
 ```
 
 ### Turn device 1 on
-
 #### Request :
 `GET /plugs?plug=1&status=1`
 #### Response :
@@ -49,7 +49,6 @@ Control upto 5 devices.
 ```
 
 ### Turn device 2 off
-
 #### Request :
 `GET /plugs?plug=2&status=0`
 #### Response :
