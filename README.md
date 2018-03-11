@@ -5,12 +5,11 @@ Control upto 5 devices.
 ![](https://i.imgur.com/E4ydN86.png)
 
 ## PIN Connections
-
-GPIO 14 => Device 1
-GPIO 12 => Device 2
-GPIO 13 => Device 3
-GPIO 15 => Device 4
-GPIO 3 => Device 5
+// Switches d1, d2, d5, d6 || 5, 4, 14, 12
+Device 1 => GPIO 5 =>  D1
+Device 2 => GPIO 4 =>  D2
+Device 3 => GPIO 14 =>  D5
+Device 4 => GPIO 12 =>  D6
 
 ## API
 
