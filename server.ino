@@ -175,7 +175,7 @@ void setup(void) {
 
   server.on("/rainbow", [](){ 
     server.send(200, "application/json", "{ \"msg\": \"Enjoy rainbow colors\" }");
-    rainbow();
+    return rainbow();
   });
 
   server.on("/strip", [](){
