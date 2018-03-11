@@ -67,3 +67,28 @@ Device 4 => GPIO 12 =>  D6
     "status": 0
 }
 ```
+
+### Strip lighting
+#### Request :
+`GET /strip?r=150&g=50&b=200`
+#### Response :
+```json
+{
+    "msg": "Enjoy the colors"
+}
+```
+
+### Strip light effects
+#### Request :
+`GET /strip?r=150&g=50&b=200&type=roll`
+#### Response :
+```json
+{
+    "msg": "Enjoy the colors"
+}
+```
+
+### Available strip effect types
+ * roll
+ * snake
+ * rainbow 
