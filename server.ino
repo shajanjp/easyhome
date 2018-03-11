@@ -198,7 +198,7 @@ void setup(void) {
         handleDevice(server.arg("plug").toInt() - 1, server.arg("status").toInt());
       }
       else
-        server.send(400, "application/json", "{ \"msg\": \"Invalid Plug API Params\" }");
+        handleNotFound();
     }
   });
 
