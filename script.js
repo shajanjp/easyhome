@@ -21,9 +21,9 @@ var nextState = function(currentState){
 var checkDeviceStatus = function(){
 	$.get("http://" + $('#mcuip').val() + "/plugs", function(data) {
 		if(data){
-		data.forEach(function(d){
-			makeSwitch(d.device, d.status);
-		});
+			data.forEach(function(d){
+				makeSwitch(d.device, d.status);
+			});
 		}
 	});
 }
@@ -44,13 +44,7 @@ $('#check-device-status').on('click', function(){
 });
 
 $('#connect-device').on('click', function(){
-	$.get("http://" + $('#mcuip').val() + "/plugs", function(data) {
-		if(data){
-			data.forEach(function(d){
-				makeSwitch(d.device, d.status);
-			});
-		}
-	});
+	checkDeviceStatus();
 });
 
 $('#turn-off-devices').on('click', function(){
