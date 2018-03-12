@@ -1,88 +1,85 @@
 # EasyHome
-Home automation using NodeMCU.
-Control upto 5 devices.
+Home automation and ambient lighting using NodeMCU.
+Control up to 4 devices and neopixel strips.
 
-![](https://github.com/shajanjp/shajanjp.github.io/raw/master/uploads/easyhome-homepage.jpg)
+![](https://i.imgur.com/E4ydN86.png)
 
 ## PIN Connections
-
-GPIO 14 => Device 1
-GPIO 12 => Device 2
-GPIO 13 => Device 3
-GPIO 15 => Device 4
-GPIO 3 => Device 5
+ * Device 1 => GPIO 5 =>  D1
+ * Device 2 => GPIO 4 =>  D2
+ * Device 3 => GPIO 14 =>  D5
+ * Device 4 => GPIO 12 =>  D6
 
 ## API
 
 ### Get device details
-
 #### Request :
-`GET /devices`
-
+`GET /plugs`
 #### Response :
 ```json
 [
     {
-        "device": 1,
+        "plug": 1,
         "status": 0
     },
     {
-        "device": 2,
+        "plug": 2,
         "status": 1
     },
     {
-        "device": 3,
+        "plug": 3,
         "status": 1
     },
     {
-        "device": 4,
-        "status": 0
-    },
-    {
-        "device": 5,
+        "plug": 4,
         "status": 0
     }
 ]
 ```
 
 ### Turn device 1 on
-
 #### Request :
-`GET /devices?device=1&status=1`
+`GET /plugs?plug=1&status=1`
 #### Response :
 ```json
 {
-    "device": 1,
+    "plug": 1,
     "status": 1
 }
 ```
 
-### Turn off all devices
-
+### Turn device 2 off
 #### Request :
-`GET /devices?device=all&state=0`
+`GET /plugs?plug=2&status=0`
 #### Response :
 ```json
-[
-    {
-        "device": 1,
-        "status": 0
-    },
-    {
-        "device": 2,
-        "status": 0
-    },
-    {
-        "device": 3,
-        "status": 0
-    },
-    {
-        "device": 4,
-        "status": 0
-    },
-    {
-        "device": 5,
-        "status": 0
-    }
-]
+{
+    "plug": 2,
+    "status": 0
+}
 ```
+
+### Strip lighting
+#### Request :
+`GET /strip?r=150&g=50&b=200`
+#### Response :
+```json
+{
+    "msg": "Enjoy the colors"
+}
+```
+
+### Strip light effects
+#### Request :
+`GET /strip?r=150&g=50&b=200&type=roll`
+#### Response :
+```json
+{
+    "msg": "Enjoy the colors"
+}
+```
+
+### Available strip effect types
+ * roll
+ * snake
+ * rainbow 
