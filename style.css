@@ -15,7 +15,7 @@ h1#main-header-title{
 
 .calm-bg{
 	background: #333; /* For browsers that do not support gradients */
-	/*background-image: url('carbon_fibre_v2.png');      */
+	background-image: url('pattern-bg.png');      
 	background-repeat: repeat;  
 }
 
