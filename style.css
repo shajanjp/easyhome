@@ -1,0 +1,31 @@
+.calm-bg{
+	background: #333; /* For browsers that do not support gradients */
+	/*background-image: url('carbon_fibre_v2.png');      */
+	background-repeat: repeat;  
+}
+
+#device-list .device{
+	cursor: pointer;
+}
+
+#device-list .device .image {
+	padding: 30px 30px 0px 30px;
+}
+
+#device-list .device .content p {
+	text-align: center;
+	font-family: Ubuntu;
+	margin-bottom:0px;
+}
+
+#device-list .device .content p.title {
+	color: #777;
+	font-size: 1.3em;
+}
+
+#device-list .device .content p.desc {
+	color: #555;
+	font-size: 1em;
+}
+
+/* red:ff4444  yellow:ffdd66  green:22ff77 */

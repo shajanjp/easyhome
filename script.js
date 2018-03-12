@@ -1,40 +1,18 @@
-var toggleBlink = function(device){
-	device.find('.toggle').removeClass('grey').addClass('yellow');
-	setTimeout(function(){
-		device.find('.toggle').removeClass('yellow').addClass('grey');
-	}, 500);
-	setTimeout(function(){
-		device.find('.toggle').removeClass('grey').addClass('yellow');
-	}, 1000);
-	setTimeout(function(){
-		device.find('.toggle').removeClass('yellow').addClass('grey');
-	}, 1500);
-	setTimeout(function(){
-		device.find('.toggle').removeClass('grey').addClass('yellow');
-	}, 2000);
-	setTimeout(function(){
-		device.find('.toggle').removeClass('yellow').addClass('grey');
-	}, 2500);
+let offStateColor = "ff4444";
+let onStateColor = "#22ff77";
+let loadingStateColor = "#ffdd66";
+
+var makeSwitch = function(device, status){
+	if(status = 0)
+		$(device).find('.image svg g path').css({ fill: offStateColor });
+	else if(status = 1)
+		$(device).find('.image svg g path').css({ fill: onStateColor });
+	else
+		$(device).find('.image svg g path').css({ fill: loadingStateColor });
 }
 
-var makeSwitch = function(sno, state){
-	var device = $('#device-' + sno);
-	if(state == "0"){
-		device.find('.switch').removeClass('green').addClass('red');
-		device.find('.toggle').removeClass('yellow').addClass('grey');
-		device.data('state', "0");
-	}
-	else if(state == "1"){
-		device.find('.switch').removeClass('red').addClass('green');
-		device.data('state', "1");
-	}
-	else if(state == "2"){
-		toggleBlink(device);
-	}
-}
-
-var nextState = function(current_state){
-	if (current_state == 1) 
+var nextState = function(currentState){
+	if (currentState == 1) 
 		return 0;
 	else
 		return 1;
@@ -48,11 +26,12 @@ var checkDeviceStatus = function(){
 	});
 }
 
-$('.switch').on('click', function(){
-	let current_device = $(this).closest('.device');
+$('.device').on('click', function(){
+	let current_device = $(this);
 	let data = {};
 	data.device = current_device.data('device');
 	data.status = nextState(current_device.data('state'));
+	makeSwitch(this, 1);
 	$.get("http://" + $('#mcuip').val() + "/devices", data, function(response){
 		makeSwitch(response.device, response.state);
 	});
