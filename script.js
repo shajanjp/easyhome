@@ -3,9 +3,9 @@ let onStateColor = "#22ff77";
 let loadingStateColor = "#ffdd66";
 
 var makeSwitch = function(device, status){
-	if(status = 0)
+	if(status == 0)
 		$(device).find('.image svg g path').css({ fill: offStateColor });
-	else if(status = 1)
+	else if(status == 1)
 		$(device).find('.image svg g path').css({ fill: onStateColor });
 	else
 		$(device).find('.image svg g path').css({ fill: loadingStateColor });
