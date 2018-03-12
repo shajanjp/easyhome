@@ -29,18 +29,17 @@ h1#main-header-title{
 
 #device-list .device .content p {
 	text-align: center;
-	font-family: Ubuntu;
+	font-family: 'Lato', sans-serif;
 	margin-bottom:0px;
 }
 
 #device-list .device .content p.title {
-	color: #777;
+	color: #999;
 	font-size: 1.3em;
 }
 
 #device-list .device .content p.desc {
-	color: #555;
+	margin-top: 6px;
+	color: #777;
 	font-size: 1em;
 }
-
-/* red:ff4444  yellow:ffdd66  green:22ff77 */
