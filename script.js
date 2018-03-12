@@ -47,7 +47,6 @@ $('#connect-device').on('click', function(){
 			data.forEach(function(d){
 				makeSwitch(d.device, d.status);
 			});
-			$('#connect-device').removeClass('primary').addClass('green').html('<i class="refresh icon"></i>Connected');
 		}
 	});
 });
