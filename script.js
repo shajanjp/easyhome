@@ -39,6 +39,18 @@ $('.device').on('click', function(){
 	});
 });
 
+$('.color').on('click', function(){
+	let currentColor = $(this);
+	let colorRGB = {};
+	colorRGB.r = currentColor.data('r');
+	colorRGB.g = currentColor.data('g');
+	colorRGB.b = currentColor.data('b');
+	colorRGB.type = "snake";
+	$.get("http://" + $('#mcuip').val() + "/strip", colorRGB, function(response){
+		console.log("Color changed !");
+	});
+});
+
 $('#check-device-status').on('click', function(){
 	checkDeviceStatus();
 });
