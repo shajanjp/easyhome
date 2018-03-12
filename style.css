@@ -54,3 +54,31 @@ h1#main-header-title{
 	color: #777;
 	font-size: 1em;
 }
+#mcu-config{
+	width: 50%;
+	margin: 0 auto;
+}
+
+#mcu-config input,
+#mcu-config button {
+	width: 100%;
+	border: 1px solid white;
+	font-family: 'Lato', sans-serif;
+	border-radius: 0px;
+	padding: 6px 8px;
+}
+
+
+#mcu-config input{
+	color: #EEE;
+	background-color: transparent;
+	height: 3em;
+	font-size: 1em;
+}
+
+#mcu-config button {
+	color: #333;
+	background-color: #EEE;
+	height: 2em;
+	cursor: pointer;
+}
