@@ -20,9 +20,11 @@ var nextState = function(currentState){
 
 var checkDeviceStatus = function(){
 	$.get("http://" + $('#mcuip').val() + "/plugs", function(data) {
+		if(data){
 		data.forEach(function(d){
 			makeSwitch(d.device, d.status);
 		});
+		}
 	});
 }
 
