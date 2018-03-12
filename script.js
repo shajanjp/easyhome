@@ -37,17 +37,6 @@ $('.device').on('click', function(){
 	});
 });
 
-$('.toggle').on('click', function(){
-	let current_device = $(this).closest('.device');
-	let data = {};
-	data.plug = current_device.data('device');
-	data.status = 2;
-	makeSwitch(data.plug, data.status);
-	$.get("http://" + $('#mcuip').val() + "/plugs", data, function(response){
-		makeSwitch(response.device, response.state);
-	});
-});
-
 $('#check-device-status').on('click', function(){
 	checkDeviceStatus();
 });
