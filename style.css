@@ -13,6 +13,15 @@ h1#main-header-title{
 	color: #CCC;
 }
 
+h2 {
+	font-family: 'Lato', sans-serif;
+	font-weight: 300;
+	font-size: 2em;
+	color: #CCC;
+	text-align: center;
+	margin-top: 50px;
+}
+
 .calm-bg{
 	background: #333; /* For browsers that do not support gradients */
 	background-image: url('pattern-bg.png');      

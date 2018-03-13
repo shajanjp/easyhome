@@ -15,7 +15,7 @@
 </head>
 <body class="calm-bg">
 	<div class="ui container" id="device-dashboard">
-		<h1 id="main-header-title">EasyHome Devices</h1>
+		<h1 id="main-header-title">EasyHome</h1>
 
 		<div id="mcu-config">
 			<input type="text" placeholder="192.168.1.1" id="mcuip" title="NodeMCU IP">
@@ -23,10 +23,12 @@
 		</div>
 		<br />
 
+		<h2>Devices</h2>
 		<div class="ui four column doubling grid" id="device-list">
 			{% include devicelist.html %}
 		</div>
 
+		<h2>Ambient Lighting</h2>
 		<div class="ui eight column doubling grid" id="color-list">
 			{% include colorlist.html %}	
 		</div>
