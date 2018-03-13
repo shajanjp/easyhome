@@ -82,3 +82,14 @@ h1#main-header-title{
 	height: 2em;
 	cursor: pointer;
 }
+
+footer p{
+	padding: 20px 0px;
+	color: #EEE;
+	text-align: center;
+}
+
+footer p a{
+	color: #33bb77;
+	text-decoration: none;
+}
