@@ -5,7 +5,8 @@ body {
 }
 
 h1#main-header-title{
-	margin-top: 30px;
+	margin-top: 20px;
+	margin-bottom: 10px;
 	font-family: 'Lato', sans-serif;
 	text-align: center;
 	font-weight: 300;
@@ -20,6 +21,28 @@ h2 {
 	color: #CCC;
 	text-align: center;
 	margin-top: 50px;
+}
+
+header{
+	margin-top: 20px;
+	margin-bottom: 30px;
+}
+
+header .logo{
+	height:100%;
+	width:100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+header .desc{
+	margin-top: 0px;
+	text-align: center;
+	font-family: 'Lato', sans-serif;
+	font-weight: 300;
+	font-size: 1.3em;
+	color: #BBB;
 }
 
 .calm-bg{
