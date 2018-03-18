@@ -181,10 +181,12 @@ void setup(void) {
   server.on("/strip", [](){
     if(server.arg("r") != "" && server.arg("g") !="" && server.arg("b") != "") {
       handleStripSuccess();
-      if(server.arg("type") == "roll")
+      if(server.arg("effect") == "roll")
         return runThrough(0, PixelCount - 1, RgbColor(server.arg("r").toInt(), server.arg("g").toInt(), server.arg("b").toInt()), 10, 3);
-      if(server.arg("type") == "snake")
-        return runThrough(0, PixelCount - 1, RgbColor(server.arg("r").toInt(), server.arg("g").toInt(), server.arg("b").toInt()), 150, 1);
+      if(server.arg("effect") == "snake")
+        return runThrough(0, PixelCount - 1, RgbColor(server.arg("r").toInt(), server.arg("g").toInt(), server.arg("b").toInt()), 100, 1);
+      if(server.arg("effect") == "flat")
+        return setThese(0, PixelCount - 1, RgbColor(server.arg("r").toInt(), server.arg("g").toInt(), server.arg("b").toInt()));
       else
         return setThese(0, PixelCount - 1, RgbColor(server.arg("r").toInt(), server.arg("g").toInt(), server.arg("b").toInt()));
     }
