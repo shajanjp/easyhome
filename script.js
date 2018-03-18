@@ -41,11 +41,12 @@ $('.device').on('click', function(){
 
 $('.color').on('click', function(){
 	let currentColor = $(this);
+	let effect = $('input[name=effect]:checked').val();
 	let colorRGB = {};
 	colorRGB.r = currentColor.data('r');
 	colorRGB.g = currentColor.data('g');
 	colorRGB.b = currentColor.data('b');
-	colorRGB.type = "snake";
+	colorRGB.effect = effect;
 	$.get("http://" + $('#mcuip').val() + "/strip", colorRGB, function(response){
 		console.log("Color changed !");
 	});
