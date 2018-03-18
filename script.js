@@ -19,7 +19,7 @@ var nextState = function(currentState){
 }
 
 var checkDeviceStatus = function(){
-	$.get("http://" + $('#mcuip').val() + "/plugs", function(data) {
+	$.get("http://" + $('#mcuip').val() + "/devices", function(data) {
 		if(data){
 			data.forEach(function(d){
 				makeSwitch(d.device, d.status);
@@ -31,7 +31,7 @@ var checkDeviceStatus = function(){
 $('.device').on('click', function(){
 	let current_device = $(this);
 	let data = {};
-	data.plug = current_device.data('device');
+	data.device = current_device.data('device');
 	data.status = nextState(current_device.data('state'));
 	makeSwitch(this, 1);
 	$.get("http://" + $('#mcuip').val() + "/devices", data, function(response){
@@ -61,7 +61,7 @@ $('#connect-device').on('click', function(){
 });
 
 $('#turn-off-devices').on('click', function(){
-	$.get("http://" + $('#mcuip').val() + "/plugs?device=all&status=0", function(data) {
+	$.get("http://" + $('#mcuip').val() + "/devices?device=all&status=0", function(data) {
 		data.forEach(function(d){
 			makeSwitch(d.device, d.status);
 		});
