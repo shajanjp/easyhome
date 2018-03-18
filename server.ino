@@ -19,8 +19,8 @@ const uint8_t PixelPin = 2;  // make sure to set this to the correct pin, ignore
 NeoPixelBus<NeoGrbFeature, Neo800KbpsMethod> strip(PixelCount, PixelPin);
 
 // Switches d1, d2, d5, d6 || 5, 4, 14, 12
-int plugs[] = {5,4,14,12};
-int plug_status[4];
+int devices[] = {5,4,14,12};
+int device_status[4];
 
 // For rainbow
 RgbColor color;
@@ -111,25 +111,25 @@ RgbColor Wheel(uint8_t WheelPos)
   } 
 }
 
-// Swithing plugs
-void turnDevice(int plug, int state){
+// Swithing devices
+void turnDevice(int device, int state){
   if(state == 0){
-    digitalWrite(plugs[plug], LOW);
-    plug_status[plug] = 0;
+    digitalWrite(devices[device], LOW);
+    device_status[device] = 0;
   }
   else if(state == 1){
-    digitalWrite(plugs[plug], HIGH);
-    plug_status[plug] = 1;
+    digitalWrite(devices[device], HIGH);
+    device_status[device] = 1;
   }
 }
 
 // Handle deivce requests
-void handleDevice(int plug, int state){
-  turnDevice(plug, state);
-  String response = "{\"plug\":";
-  response += (plug + 1); 
+void handleDevice(int device, int state){
+  turnDevice(device, state);
+  String response = "{\"device\":";
+  response += (device + 1); 
   response += ", \"status\":";
-  response += plug_status[plug];
+  response += device_status[device];
   response += "}";
   server.send(200, "application/json", response);
   delay(1000);
@@ -194,10 +194,10 @@ void setup(void) {
       handleNotFound();
   });
 
-  server.on("/plugs", []() {
+  server.on("/devices", []() {
     if(server.args() == 2) {
-      if(server.arg("plug").toInt() && server.arg("status")) {
-        handleDevice(server.arg("plug").toInt() - 1, server.arg("status").toInt());
+      if(server.arg("device").toInt() && server.arg("status")) {
+        handleDevice(server.arg("device").toInt() - 1, server.arg("status").toInt());
       }
       else
         handleNotFound();
