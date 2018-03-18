@@ -51,6 +51,10 @@ header .desc{
 	background-repeat: repeat;  
 }
 
+#color-list{
+margin-top: 20px;
+}
+
 #color-list .color,
 #device-list .device {
 	cursor: pointer;
@@ -115,6 +119,13 @@ header .desc{
 	cursor: pointer;
 }
 
+#effects-list {
+	text-align: center;
+	margin: 0 auto; 
+	display: inline-block; 
+	color: #EEE;
+	font-size: 1em;
+}
 footer p{
 	font-family: 'Lato', sans-serif;
 	padding: 20px 0px;
