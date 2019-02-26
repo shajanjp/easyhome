@@ -42,14 +42,19 @@ $('.device').on('click', function() {
   });
 });
 
+$('#effects-list .item').on('click', function(){
+  currentEffect = $(this).data('effect');
+  $('#effects-list .item').removeClass('active');
+  $(this).addClass('active');
+})
+
 $('.color').on('click', function() {
   let currentColor = $(this);
-  let effect = $('input[name=effect]:checked').val();
   let colorRGB = {};
   colorRGB.r = currentColor.data('r');
   colorRGB.g = currentColor.data('g');
   colorRGB.b = currentColor.data('b');
-  colorRGB.effect = effect;
+  colorRGB.effect = currentEffect;
   $.get('http://' + $('#mcuip').val() + '/strip', colorRGB, function(response) {
     console.log('Color changed !');
   });
