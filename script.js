@@ -1,23 +1,24 @@
 let offStateColor = 'ff4444';
 let onStateColor = '#22ff77';
 let loadingStateColor = '#ffdd66';
+let currentEffect = 'flat';
 
 let makeSwitch = function(device, status) {
   if (status == 0) {
-$(device).find('.image svg g path').css({fill: offStateColor});
-} else if (status == 1) {
-$(device).find('.image svg g path').css({fill: onStateColor});
-} else {
-$(device).find('.image svg g path').css({fill: loadingStateColor});
-}
+    $(device).find('.image svg g path').css({fill: offStateColor});
+  } else if (status == 1) {
+    $(device).find('.image svg g path').css({fill: onStateColor});
+  } else {
+    $(device).find('.image svg g path').css({fill: loadingStateColor});
+  }
 };
 
 let nextState = function(currentState) {
   if (currentState == 1) {
-return 0;
-} else {
-return 1;
-}
+    return 0;
+  } else {
+    return 1;
+  }
 };
 
 let checkDeviceStatus = function() {
