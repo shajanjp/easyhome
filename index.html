@@ -12,22 +12,23 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/components/container.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/components/grid.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/components/image.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/components/menu.min.css">
 	<link rel="stylesheet" href="style.css">
 </head>
 <body class="calm-bg">
-	<div class="ui container" id="device-dashboard">
-		<header>
-			<div class="logo">
-				<img src="easyhome-logo.png" alt="EasyHome Logo" width="100px" height="100px">
-			</div>
-			<h1 id="main-header-title">EasyHome</h1>
-			<p class="desc">Home automation and ambient lighting dashboard for Arduino and ESP modules.</p>
-		</header>
+	<header>
+		<div class="logo">
+			<img src="easyhome-logo.png" alt="EasyHome Logo" width="100px" height="100px">
+		</div>
+		<h1 id="main-header-title">EasyHome</h1>
+		<p class="desc">Home automation and ambient lighting dashboard for Arduino and ESP modules.</p>
 		<div id="mcu-config">
 			<input type="text" placeholder="192.168.1.1" id="mcuip" title="NodeMCU IP">
 			<button>Connect to Controller</button>
 		</div>
 		<br />
+	</header>
+	<div class="ui container" id="device-dashboard">
 
 		<h2>Devices</h2>
 		<div class="ui four column doubling grid" id="device-list">
@@ -35,10 +36,10 @@
 		</div>
 
 		<h2>Ambient Lighting</h2>
-		<div id="effects-list">
-			<input type="radio" name="effect" value="flat" id="effect-1"><label for="effect-1">Flat</label>
-			<input type="radio" name="effect" value="roll" id="effect-2"><label for="effect-2">Roll</label>
-			<input type="radio" name="effect" value="snake" id="effect-3"><label for="effect-3">Snake</label>
+		<div class="ui three flat item menu" id="effects-list">
+			<a class="item" data-effect="flat">Flat</a>
+			<a class="item" data-effect="roll">Roll</a>
+			<a class="item" data-effect="snake">Snake</a>
 		</div>
 
 		<br/>
