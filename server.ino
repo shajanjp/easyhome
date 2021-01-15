@@ -35,19 +35,19 @@ RgbColor black(0, 0, 0);
 // Home API
 void handleRoot()
 {
-  server.send(200, "application/json", "{ \"msg\": \"Welcome to EasyHome\", \"version\": \"1.05 Beta\" }");
+  server.send(200, "application/json", "{ \"messsge\": \"Welcome to EasyHome\", \"version\": \"1.0 Beta\", \"docs\": \"http://github.com/shajanjp/easyhome\" }");
 }
 
 // 404
 void handleNotFound()
 {
-  server.send(404, "application/json", "{ \"msg\": \"Invalid API request\" }");
+  server.send(404, "application/json", "{ \"message\": \"Not Found\" }");
 }
 
 // Strip Success
 void handleStripSuccess()
 {
-  server.send(200, "application/json", "{ \"msg\": \"Enjoy the colors\" }");
+  server.send(200, "application/json", "{ \"message\": \"Enjoy the colors\" }");
 }
 
 // Set all PINS ON or OFF
@@ -62,20 +62,15 @@ void setThese(int start, int end, RgbColor myColor)
 
 void rainbow()
 {
-  for (uint16_t j = 0;; j++) // complete 5 cycles around the color wheel
+  for (uint16_t j = 0;; j++)
   {
     for (uint16_t i = 0; i < PixelCount; i++)
     {
-      // generate a value between 0~255 according to the position of the pixel
-      // along the strip
       pos = ((i * 256 / PixelCount) + j) & 0xFF;
-      // calculate the color for the ith pixel
       color = Wheel(pos);
-      // set the color of the ith pixel
       strip.SetPixelColor(i, color);
     }
     strip.Show();
-    //strip.Darken(100);
     delay(20);
   }
 }
@@ -194,7 +189,7 @@ void setup(void)
   server.on("/", handleRoot);
 
   server.on("/rainbow", []() {
-    server.send(200, "application/json", "{ \"msg\": \"Enjoy rainbow colors\" }");
+    server.send(200, "application/json", "{ \"message\": \"Enjoy rainbow colors\" }");
     return rainbow();
   });
 
@@ -236,7 +231,7 @@ void setup(void)
   runThrough(0, PixelCount - 1, RgbColor(200, 200, 200), 10, 1);
 }
 
-void remoteAction(int code)
+void handleIrRequest(int code)
 {
   switch (code)
   {
@@ -328,8 +323,7 @@ void loop(void)
   if (irrecv.decode(&results))
   {
     unsigned int ircode = results.value;
-    Serial.println(ircode);
-    remoteAction(ircode);
+    handleIrRequest(ircode);
     irrecv.resume();
   }
   delay(100);
