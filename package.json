@@ -1,0 +1,23 @@
+{
+  "name": "easyhome-server",
+  "version": "1.0.0",
+  "description": "Home automation and ambient lighting using NodeMCU. Control up to 4 devices and neopixel strips.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shajanjp/easyhome.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shajanjp/easyhome/issues"
+  },
+  "homepage": "https://github.com/shajanjp/easyhome#readme",
+  "dependencies": {
+    "ws": "^7.4.2"
+  }
+}
