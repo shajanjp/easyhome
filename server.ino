@@ -235,7 +235,7 @@ void setup(void)
 
   runThrough(0, PixelCount - 1, RgbColor(200, 200, 200), 10, 1);
 
-  client.connect("ws://easyhome-server.glitch.me");
+  client.connect("ws://easyhome-server.glitch.me/ws");
   client.send("Hello from nodemcu");
   client.onMessage([](WebsocketsMessage msg){
     Serial.println("Got Message: " + msg.data());
