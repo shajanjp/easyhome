@@ -1,3 +1,4 @@
+#include <ArduinoWebsockets.h>
 #include <ESP8266WiFi.h>
 #include <WiFiClient.h>
 #include <ESP8266WebServer.h>
@@ -146,6 +147,9 @@ void handleDevice(int device, int state)
   delay(1000);
 }
 
+using namespace websockets;
+WebsocketsClient client;
+
 // Main Setup
 void setup(void)
 {
@@ -228,7 +232,17 @@ void setup(void)
   Serial.println("HTTP server started...");
   strip.Begin();
   strip.Show();
+
   runThrough(0, PixelCount - 1, RgbColor(200, 200, 200), 10, 1);
+
+  client.connect("ws://easyhome-server.glitch.me");
+  client.send("Hello from nodemcu");
+  client.onMessage([](WebsocketsMessage msg){
+    Serial.println("Got Message: " + msg.data());
+    if(msg.data() == "VISIT"){
+        runThrough(0, PixelCount - 1, RgbColor(0, 250, 0), 50, 1);
+    }
+  });
 }
 
 void handleIrRequest(int code)
@@ -326,5 +340,6 @@ void loop(void)
     handleIrRequest(ircode);
     irrecv.resume();
   }
+  client.poll();
   delay(100);
 }
