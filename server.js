@@ -15,7 +15,8 @@ app.get('/broadcast', (req, res) => {
 
 wss.on('connection', (socket) => {
   socket.on('message', (message) => {
-    console.log('received: %s', message);
+    console.log('received: ', message);
+    broadcast(message);
   });
 });
 

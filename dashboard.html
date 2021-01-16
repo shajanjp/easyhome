@@ -6,6 +6,7 @@
     <title>Easyhome - Dashboard</title>
 </head>
 <body>
+    <button onclick="sendMessage('CLAPS')">CLAPS</button>
     <script>
         const url = `wss://easyhome-server.glitch.me/ws`;
         // const url = `ws://localhost:3000/ws`;
@@ -14,13 +15,18 @@
         // Connection opened
         socket.addEventListener('open', function (event) {
             console.log("connected");
-            socket.send('Hello from dashboard !');
+            socket.send("VISIT");
         });
 
         // Listen for messages
         socket.addEventListener('message', function (event) {
             console.log('Message from server ', event.data);
         });
+
+        function sendMessage(message){
+            console.log('sending message', message);
+            socket.send(message);
+        }
     </script>
 </body>
 </html>
