@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Easyhome - Dashboard</title>
+</head>
+<body>
+    <script>
+        const url = `ws://easyhome-server.glitch.me`;
+        const socket = new WebSocket(url);
+
+        // Connection opened
+        socket.addEventListener('open', function (event) {
+            console.log("connected");
+            socket.send('Hello from dashboard !');
+        });
+
+        // Listen for messages
+        socket.addEventListener('message', function (event) {
+            console.log('Message from server ', event.data);
+        });
+    </script>
+</body>
+</html>
