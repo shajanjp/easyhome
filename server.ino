@@ -76,7 +76,7 @@ void rainbow()
   }
 }
 
-void runThrough(int start, int end, RgbColor myColor, int speed, int count)
+void runThrough(int start, int end, RgbColor myColor, int speed, int count, bool doReverse)
 {
   for (int c = 0; c < count; ++c)
   {
@@ -87,12 +87,14 @@ void runThrough(int start, int end, RgbColor myColor, int speed, int count)
       strip.Show();
       delay(speed);
     }
-    for (int j = end; j >= start; j--)
-    {
-      setThese(start, end, RgbColor(0, 0, 0));
-      strip.SetPixelColor(j, myColor);
-      strip.Show();
-      delay(speed);
+    if(doReverse){
+      for (int j = end; j >= start; j--)
+      {
+        setThese(start, end, RgbColor(0, 0, 0));
+        strip.SetPixelColor(j, myColor);
+        strip.Show();
+        delay(speed);
+      }
     }
     setThese(start, end, black);
   }
@@ -202,9 +204,9 @@ void setup(void)
     {
       handleStripSuccess();
       if (server.arg("effect") == "roll")
-        return runThrough(0, PixelCount - 1, RgbColor(server.arg("r").toInt(), server.arg("g").toInt(), server.arg("b").toInt()), 10, 3);
+        return runThrough(0, PixelCount - 1, RgbColor(server.arg("r").toInt(), server.arg("g").toInt(), server.arg("b").toInt()), 10, 3, false);
       if (server.arg("effect") == "snake")
-        return runThrough(0, PixelCount - 1, RgbColor(server.arg("r").toInt(), server.arg("g").toInt(), server.arg("b").toInt()), 100, 1);
+        return runThrough(0, PixelCount - 1, RgbColor(server.arg("r").toInt(), server.arg("g").toInt(), server.arg("b").toInt()), 100, 1, false);
       if (server.arg("effect") == "flat")
         return setThese(0, PixelCount - 1, RgbColor(server.arg("r").toInt(), server.arg("g").toInt(), server.arg("b").toInt()));
       else
@@ -233,7 +235,7 @@ void setup(void)
   strip.Begin();
   strip.Show();
 
-  runThrough(0, PixelCount - 1, RgbColor(200, 200, 200), 10, 1);
+  runThrough(0, PixelCount - 1, RgbColor(200, 200, 200), 10, 1, true);
 
   client.connect("ws://easyhome-server.glitch.me/ws");
   client.send("Hello from nodemcu");
@@ -241,15 +243,15 @@ void setup(void)
     Serial.println("Got Message: " + msg.data());
     if (msg.data() == "VISIT")
     {
-      runThrough(0, PixelCount - 1, RgbColor(0, 250, 0), 50, 1);
+      runThrough(0, PixelCount - 1, RgbColor(0, 250, 0), 50, 3, false);
     }
     else if (msg.data() == "CLAPS")
     {
-      runThrough(0, PixelCount - 1, RgbColor(250, 250, 0), 50, 1);
+      runThrough(0, PixelCount - 1, RgbColor(250, 250, 0), 20, 5, false);
     }
     else
     {
-      runThrough(0, PixelCount - 1, RgbColor(50, 50, 50), 10, 1); 
+      runThrough(0, PixelCount - 1, RgbColor(50, 50, 50), 10, 1, false); 
     }
   });
 }
@@ -331,7 +333,7 @@ void handleIrRequest(int code)
     break;
 
   case 16769055: // white animation
-    runThrough(0, PixelCount - 1, RgbColor(200, 200, 200), 10, 1);
+    runThrough(0, PixelCount - 1, RgbColor(200, 200, 200), 10, 1, true);
     break;
 
   default:
