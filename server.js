@@ -8,8 +8,9 @@ const server = http.createServer(app);
 const wss = new ws.Server({ server, path: '/ws' });
 
 app.get('/broadcast', (req, res) => {
-  broadcast("VISIT");
-  res.json({ "message": "done" });
+  const message = req.query.message || '';
+  broadcast(message);
+  res.json({ success: "true", message });
 })
 
 wss.on('connection', (socket) => {
