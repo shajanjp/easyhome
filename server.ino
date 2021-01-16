@@ -237,10 +237,19 @@ void setup(void)
 
   client.connect("ws://easyhome-server.glitch.me/ws");
   client.send("Hello from nodemcu");
-  client.onMessage([](WebsocketsMessage msg){
+  client.onMessage([](WebsocketsMessage msg) {
     Serial.println("Got Message: " + msg.data());
-    if(msg.data() == "VISIT"){
-        runThrough(0, PixelCount - 1, RgbColor(0, 250, 0), 50, 1);
+    if (msg.data() == "VISIT")
+    {
+      runThrough(0, PixelCount - 1, RgbColor(0, 250, 0), 50, 1);
+    }
+    else if (msg.data() == "CLAPS")
+    {
+      runThrough(0, PixelCount - 1, RgbColor(250, 250, 0), 50, 1);
+    }
+    else
+    {
+      runThrough(0, PixelCount - 1, RgbColor(50, 50, 50), 10, 1); 
     }
   });
 }
