@@ -1,9 +1,14 @@
+// NeoPixelBus by Makuna - Version: 2.6.0
+#include <NeoPixelBus.h>
+
+// IRremoteESP8266 - Version: 2.8.2
+#include <IRrecv.h>
+
 #include <ArduinoWebsockets.h>
 #include <ESP8266WiFi.h>
 #include <WiFiClient.h>
 #include <ESP8266WebServer.h>
 #include <ESP8266mDNS.h>
-#include <IRrecv.h>
 
 uint16_t RECV_PIN = D4; // GPIO 2
 IRrecv irrecv(RECV_PIN);
@@ -14,7 +19,6 @@ const char *password = "hellogwc404"; // wifi password
 
 ESP8266WebServer server(80);
 
-#include <NeoPixelBus.h>
 
 const uint16_t PixelCount = 24; // this example assumes 4 pixels, making it smaller will cause a failure
 const uint8_t PixelPin = 2;     // make sure to set this to the correct pin, ignored for Esp8266 and takes RX pin by default
@@ -32,6 +36,8 @@ int device_status[4];
 RgbColor color;
 uint8_t pos;
 RgbColor black(0, 0, 0);
+
+MDNSResponder mdns;
 
 // Home API
 void handleRoot()
@@ -187,11 +193,12 @@ void setup(void)
   Serial.print("IP address: ");
   Serial.println(WiFi.localIP());
 
-  if (MDNS.begin("ESP8266"))
+  if (mdns.begin("ESP8266"), WiFi.localIP())
   {
     Serial.println("MDNS responder started...");
   }
 
+  MDNS.addService("http", "tcp", 80);
   server.on("/", handleRoot);
 
   server.on("/rainbow", []() {
@@ -345,12 +352,14 @@ void handleIrRequest(int code)
 void loop(void)
 {
   server.handleClient();
+
   if (irrecv.decode(&results))
   {
     unsigned int ircode = results.value;
     handleIrRequest(ircode);
     irrecv.resume();
   }
+
   client.poll();
   delay(100);
 }
